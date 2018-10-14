@@ -1,0 +1,28 @@
+Features
+add ability for list device
+add ability to know priv and change
+discovery table:
+
+----------
+Gig 0/1     UP  IP address
+    Mac address: abed.1222.aaaa
+    CDP neighbour: Core-Router
+    LLDP neigoubr:
+
+    IP routing related:
+
+
+
+
+
+BUGs
+check with banners
+check bugs for Ul core
+
+Optimization
+seperate device list on different file
+functions file..? or just functions
+
+Done -  input validation - 'chars' --> is a digit is not working
+
+ -P2 - narrow down the input validation for IP
