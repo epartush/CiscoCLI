@@ -1,21 +1,21 @@
 #!/usr/bin/python
 import socket
-import sys, os
+import sys,os
 import time
 import datetime
 from os import path
 
 starttime = time.time()
-ts=datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d_%H_%M_%S')
+ts = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d_%H_%M_%S')
 
-#shows=['show clock']
+# shows=['show clock']
 shows=["show running","show ip int br","show ip route", "show ip protocols", "show clock","show platform", "show module", "show version", "show cdp ne", "show inventory | i PID"]
-#login=["lions", "lions", "enable 15", "bonanza1947", "ter len 0"]
+# login=["lions", "lions", "enable 15", "bonanza1947", "ter len 0"]
 login=["ter len 0"]
 
 # check how many arguments we got.  the first si the application the second should be username
 
-if len(sys.argv) <=1:
+if len(sys.argv) <= 1:
     print "Usage: ssh.py <ip_address> <port>"
     sys.exit(0)
 elif len(sys.argv) < 3:
@@ -30,10 +30,10 @@ if not os.path.exists(ips):
     os.mkdir(ips, 0755)
 
 
-#Create a Socket
+# Create a Socket
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#Connect to the Server 'IP' and Port
-#s.connect(('10.56.100.1',23))
+# Connect to the Server 'IP' and Port
+# s.connect(('10.56.100.1',23))
 print "Connecting to "+ips+":"+ str(port)
 s.connect((ips,port))
 
