@@ -20,9 +20,19 @@ check with banners
 check bugs for Ul core
 
 Optimization
-separated device list on different file
-functions file..? or just functions
+[done]separated device list on different file
+[done]functions file..? or just functions
 
 Done -  input validation - 'chars' --> is a digit is not working
 
- -P2 - narrow down the input validation for IP
+ DONE -P2 - narrow down the input validation for IP
+
+
+ TODO P1
+ connection function
+ commands function
+ write to file function
+ IN PARALLEL start on creating configuration files with variables
+
+ Get show interface and select one
+
