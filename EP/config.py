@@ -1,0 +1,8 @@
+
+import os
+
+f= readline
+
+
+
+
