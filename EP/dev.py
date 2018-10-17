@@ -6,16 +6,22 @@
 # print core['ip']
 
 # ######  -l list #########
-def devlist(device):
-    print ("---" + device['name'] + "---")
-    for arg in device:
-        print arg + ':' + device[arg]
-
+def devlist(device,num):
+    print "\nDevice #" + str(num) + ":"
+    print "Hostname:     "+ device['name']
+    print "IPv4 address: " + device['ip']
+    print "Port:         " + device['port']
+    print "Username:     " + device['username']
+    print "Password:     " + device['password']
+    print "Enable:       " + device['enable']
+    #for arg in device:
+     #   print arg + ':  ' + device[arg]
+      #  print device.index(arg)
 
 def printdevs(devices):
     print "\n\n ###printing Device List now ###"
     for device in devices:
-        devlist(device)
+        devlist(device,devices.index(device))
 
 
 # core['ip']= raw_input("Please Change IP:")
@@ -23,18 +29,20 @@ def printdevs(devices):
 # print core['ip'].split(".")
 # print type(core['ip'].split("."))
 
-def printdev(mydevices):
-    core = mydevices[0]
-    inputok =0
+
+def adddev(mydevices):
+    mydevices.append({'name' : ' ','ip' : '','username' : '','password' : '','enable' : '','port' :  '',})
+    dev=mydevices[-1]
+    inputok = 0
+    dev['name'] = raw_input("Please enter the hostname:")
     while inputok != 4:
         inputok = 0
-        countchar = 0
-        core['ip'] = raw_input("enter IP: ")
+        dev['ip'] = raw_input("Enter IPv4 for Telnet: ")
 
-        if len(core['ip'].split(".")) == 4:
-            for octet in core['ip'].split("."):
+        if len(dev['ip'].split(".")) == 4:
+            for octet in dev['ip'].split("."):
                 if octet != '' and int(octet) > 0 and int(octet) <= 255:
-                    inputok +=1
+                    inputok += 1
                 else:
                     print str(octet) + " is not a number between 1 - 255"
                     inputok = 0
@@ -42,10 +50,39 @@ def printdev(mydevices):
         else:
             print "Use IPv4 Address format: x.x.x.x"
 
+    while 1:
+        dev['port'] = raw_input("Please enter port number [23]: ") or '23'
+        if dev['port'].isdigit() == True and int(dev['port']) < 65532:
+            break
+    dev['username']=raw_input("Username: ")
+    dev['password'] = raw_input("Password: ")
+    dev['enable']=raw_input("Enable Password: ")
+    print dev
+
+def editdev(mydevices,num):
+    dev=mydevices[int(num)]
+    inputok = 0
+    dev['name'] = raw_input("Please enter the hostname[" +dev['name']+ "]:") or dev['name']
+    while inputok != 4:
+        inputok = 0
+        dev['ip'] = raw_input("Enter IPv4 for Telnet[" +dev['ip']+ "]:") or dev['ip']
+
+        if len(dev['ip'].split(".")) == 4:
+            for octet in dev['ip'].split("."):
+                if octet != '' and int(octet) > 0 and int(octet) <= 255:
+                    inputok += 1
+                else:
+                    print str(octet) + " is not a number between 1 - 255"
+                    inputok = 0
+                    break
+        else:
+            print "Use IPv4 Address format: x.x.x.x"
 
     while 1:
-        core['port'] = raw_input("Please enter port number -[23]:") or '23'
-        if core['port'].isdigit() == True and int(core['port'])<65532:
+        dev['port'] = raw_input("Please enter port number [" +dev['port']+ "]:") or dev['port']
+        if dev['port'].isdigit() == True and int(dev['port']) < 65532:
             break
-
-    print core
+    dev['username']=raw_input("Username [" +dev['username']+ "]:") or dev['username']
+    dev['password'] = raw_input("Password [" +dev['password']+ "]:") or dev['password']
+    dev['enable']=raw_input("Enable Password [" +dev['enable']+ "]:") or dev['enable']
+    print dev
