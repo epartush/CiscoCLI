@@ -2,6 +2,7 @@
 
 import dev
 import mydevices
+import config
 import datetime
 import time
 
@@ -28,6 +29,12 @@ while input != 'e':
         num=raw_input("Enter device ID to edit")
         if num.isdigit() == True and int(num) < len(devices):
             dev.editdev(devices,num)
+    elif input =='4':
+        print "Configuring hostname\n"
+        path = "configs/hostname"
+        config.load_config(path)
+        raw_input("\nPress any key..")
+
 
 #dev.printdev(devices)
 

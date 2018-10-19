@@ -1,2 +1,11 @@
 conf t
 hostname %HOSTNAME
+sdasd
+asd
+asd
+asd
+asd
+dddddd
+int %INTERFACE1
+ip add %IPADDRESS
+
