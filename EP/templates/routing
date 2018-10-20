@@ -1,0 +1,5 @@
+router ospf 100
+network 0.0.0.0 0.0.0.0 area 0
+
+ip route 0.0.0.0 0.0.0.0 %INTERFACE %NEXTHOP
+

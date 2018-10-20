@@ -41,12 +41,15 @@ def adddev(mydevices):
 
         if len(dev['ip'].split(".")) == 4:
             for octet in dev['ip'].split("."):
-                if octet != '' and int(octet) > 0 and int(octet) <= 255:
-                    inputok += 1
+                if octet.isdigit() == True:
+                    if octet != '' and int(octet) > 0 and int(octet) <= 255:
+                        inputok += 1
+                    else:
+                        print str(octet) + " is not a number between 1 - 255"
+                        inputok = 0
+                        break
                 else:
-                    print str(octet) + " is not a number between 1 - 255"
-                    inputok = 0
-                    break
+                    print "Numbers only"
         else:
             print "Use IPv4 Address format: x.x.x.x"
 
@@ -69,12 +72,15 @@ def editdev(mydevices,num):
 
         if len(dev['ip'].split(".")) == 4:
             for octet in dev['ip'].split("."):
-                if octet != '' and int(octet) > 0 and int(octet) <= 255:
-                    inputok += 1
+                if octet.isdigit() == True:
+                    if octet != '' and int(octet) > 0 and int(octet) <= 255:
+                        inputok += 1
+                    else:
+                        print str(octet) + " is not a number between 1 - 255"
+                        inputok = 0
+                        break
                 else:
-                    print str(octet) + " is not a number between 1 - 255"
-                    inputok = 0
-                    break
+                    print "Numbers only"
         else:
             print "Use IPv4 Address format: x.x.x.x"
 

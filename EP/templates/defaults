@@ -1,0 +1,7 @@
+conf t
+hostname %HOSTNAME
+sdasd
+dddddd
+int %INTERFACE1
+ip add %IPADDRESS
+
