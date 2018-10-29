@@ -60,7 +60,7 @@ def adddev(mydevices):
     dev['username']=raw_input("Username: ")
     dev['password'] = raw_input("Password: ")
     dev['enable']=raw_input("Enable Password: ")
-    print dev
+    devlist(dev, len(mydevices)-1)
 
 def editdev(mydevices,num):
     dev=mydevices[int(num)]
