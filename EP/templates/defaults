@@ -1,7 +1,13 @@
 conf t
 hostname %HOSTNAME
-sdasd
-dddddd
+cdp run
+!
+username %USERNAME privi 15 secret %SECRET
 int %INTERFACE1
-ip add %IPADDRESS
+ip add %IPADDRESS %SUBNETMASK
+cdp enable
+!
 
+line vty 0 4
+login local
+transport input all

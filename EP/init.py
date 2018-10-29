@@ -19,21 +19,29 @@ mypath='templates/'
 
 '''Menu '''
 while True:
-    print" 1. Add Device \n 2. List the devices \n 3. Store log \n 4. Config Menu \n 5. Edit device\n e. Exit"
+    print" 1. Device List \n 2. Devices Menu\n 3. Config Menu \n e. Exit"
     input=raw_input("Select: ")
-    if input == '2':
+    if input == '1':
         dev.printdevs(devices)
         print "\nYou have " + str(len(devices)) + " devices total."
         raw_input("\nPress any key..")
-    elif input == '1':
-        dev.adddev(devices)
-        print "You have " + str(len(devices)) + " devices total."
-        raw_input("\nPress any key..")
-    elif input =='5':
-        num=raw_input("Enter device ID to edit")
-        if num.isdigit() == True and int(num) < len(devices):
-            dev.editdev(devices,num)
-    elif input =='4':
+    elif input == '2':
+        while True:
+            print " 1. Add device \n 2. Edit Device \n e. Back"
+            device_input = raw_input("Select: ")
+            if device_input == '1':
+                dev.adddev(devices)
+                print "You have " + str(len(devices)) + " devices total."
+                raw_input("\nPress any key..")
+                break
+            elif device_input =='2':
+                num=raw_input("Enter device ID to edit")
+                if num.isdigit() == True and int(num) < len(devices):
+                    dev.editdev(devices,num)
+                break
+            elif device_input == 'e':
+                break
+    elif input =='3':
         onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 
         for files in onlyfiles:
@@ -48,9 +56,19 @@ while True:
 
         print "Loading"+ file_name +" Template\n"
         path = mypath+file_name
-        default_config = config.load_config(path)
-        for line in default_config:
-            print line
+        device_config = config.load_config(path)
+        while True:
+            savetofile= raw_input("Save to file? [Y/N]")
+            if savetofile.capitalize()=='Y':
+                filename = raw_input("Enter filename:")
+                config.writetofile(device_config,filename)
+                break
+            if savetofile.capitalize()=='N':
+                for line in device_config:
+                    print line
+                break
+
+
         raw_input("\nPress any key..")
 
     elif input== 'e':

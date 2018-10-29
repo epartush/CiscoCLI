@@ -1,0 +1,10 @@
+crypto ikev2 profile %IKEv2Profile
+set transform-set %TS
+
+crypto ipsec profile %IPSECProfile
+set
+
+int tun %TUNNEL
+tunnel protection ipsec profile %IPSECProfile
+
+
