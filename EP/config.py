@@ -26,3 +26,13 @@ def load_config(path):
                     line[line.index(word)] = raw_input()
         new_conf.append (' '.join(line))
     return new_conf
+
+def writetofile (newconfig,filename):
+    import time
+    from datetime import datetime
+    TS = datetime.fromtimestamp(time.time()).strftime('%H-%M-%S')
+    f = open ('output/'+filename+TS+'.txt', 'w+')
+    for line in newconfig:
+        print line
+        f.write(line+'\n')
+    f.close()

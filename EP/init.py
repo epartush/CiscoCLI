@@ -49,8 +49,18 @@ while True:
         print "Loading"+ file_name +" Template\n"
         path = mypath+file_name
         default_config = config.load_config(path)
-        for line in default_config:
-            print line
+        while True:
+            savetofile= raw_input("Save to file? [Y/N]")
+            if savetofile.capitalize()=='Y':
+                filename = raw_input("Enter filename:")
+                config.writetofile(default_config,filename)
+                break
+            if savetofile.capitalize()=='N':
+                for line in default_config:
+                    print line
+                break
+
+
         raw_input("\nPress any key..")
 
     elif input== 'e':
