@@ -91,4 +91,4 @@ def editdev(mydevices,num):
     dev['username']=raw_input("Username [" +dev['username']+ "]:") or dev['username']
     dev['password'] = raw_input("Password [" +dev['password']+ "]:") or dev['password']
     dev['enable']=raw_input("Enable Password [" +dev['enable']+ "]:") or dev['enable']
-    print dev
+    devlist (dev,int(num))
