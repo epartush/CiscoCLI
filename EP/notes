@@ -1,5 +1,5 @@
 Features
-add ability for list device
+[done]add ability for list device
 add ability to know priv and change
 discovery table:
 
@@ -11,7 +11,7 @@ Gig 0/1     UP  IP address
 
     IP routing related:
 
-lalal
+
 
 
 
@@ -32,7 +32,11 @@ Done -  input validation - 'chars' --> is a digit is not working
  connection function
  commands function
  write to file function
- IN PARALLEL start on creating configuration files with variables
+ [Done]IN PARALLEL start on creating configuration files with variables
 
  Get show interface and select one
+
+Version 2.0
+GUI - Kivy - downloaded at the windows station
+
 
