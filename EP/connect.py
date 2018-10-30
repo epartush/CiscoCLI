@@ -5,9 +5,17 @@ import datetime
 from os import path
 
 def devcon(config,devices,device):
+    dev = devices[int(device)]
     print "THIS IS DEVCON Function"
-    print config
-    print devices[int(device)]
+    print "connecting to "+ dev['ip'] +" "+dev['name']
+    print "using " +dev['username']+ 'as username and ' + dev['password'] + 'as password '
+
+    for line in config:
+        #print "pushing-> " + line
+        print str(config.index(line)+1) + " out of " + str(len(config))
+        sys.stdout.flush()
+        time.sleep(0.3)
+
 
 def TBD():
     # shows=['show clock']
