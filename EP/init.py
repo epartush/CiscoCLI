@@ -3,6 +3,7 @@
 import dev
 import mydevices
 import config
+import connect
 import datetime
 import time
 from os import listdir
@@ -67,6 +68,15 @@ while True:
                 for line in device_config:
                     print line
                 break
+
+        while True:
+            if raw_input("Provision configs to device? [Y/N]").capitalize() == 'Y':
+                dev.printdevs(devices)
+                connect.devcon(device_config,devices,raw_input("Select device:"))
+                break
+            elif raw_input("Provision configs to device? [Y/N]").capitalize() == 'N':
+                break
+
 
 
         raw_input("\nPress any key..")
