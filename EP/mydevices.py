@@ -10,14 +10,16 @@ devices = [
      },
 
      {
-        'name' : 'IPNGNG_01',
-        'ip' : '12.3.5.6',
-        'username' : 'lions',
-        'password' : 'lions',
+        'name' : 'iosv-2',
+        'ip' : '192.168.1.140',
+        'username' : 'cisco',
+        'password' : 'cisco',
         'enable' : ' ',
-        'port' :  '22',
+        'port' :  '23',
 
      },
+
+
 
 ]
 

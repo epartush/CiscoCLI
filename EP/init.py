@@ -80,7 +80,11 @@ while True:
 
 
         raw_input("\nPress any key..")
-
+    elif input == '10':
+        shows = ["show running", "show ip int br"]
+        dev.printdevs(devices)
+        connect.devcon(shows, devices, raw_input("Select device:"))
+        break
     elif input== 'e':
         break
 

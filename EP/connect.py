@@ -6,15 +6,51 @@ from os import path
 
 def devcon(config,devices,device):
     dev = devices[int(device)]
-    print "THIS IS DEVCON Function"
-    print "connecting to "+ dev['ip'] +" "+dev['name']
-    print "using " +dev['username']+ 'as username and ' + dev['password'] + 'as password '
+    output=[]
 
-    for line in config:
+    print "THIS IS DEVCON Function"
+    #print "connecting to "+ dev['ip'] +" "+dev['name']
+    print "using " +dev['username']+ ' as username and ' + dev['password'] + ' as password '
+
+    '''for line in config:
         #print "pushing-> " + line
         print str(config.index(line)+1) + " out of " + str(len(config))
         sys.stdout.flush()
         time.sleep(0.3)
+'''
+
+    print "connecting to " + dev['ip'] + " " + dev['port'] + " " + dev['name']
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    port= int(dev['port'])
+    s.connect((dev['ip'], port))
+    time.sleep(1)
+    output.append(s.recv(512).split('\r\n'))
+    print output[-1][-1][1:]
+    #s.recv(0)
+    if output[-1][-1][1:]== 'sername: ':
+        print "this is awsome!!"
+        s.send(dev['username'] + '\r\n')
+        time.sleep(0.2)
+        output.append(s.recv(100).split('\r\n'))
+        s.send(dev['password'] + '\r\n')
+        time.sleep(0.2)
+        output.append(s.recv(100).split('\r\n'))
+    #print s.recv(1024)
+    else:
+        print "what tha?"
+    #output.append(s.recv(1024).split('\r\n'))
+    s.send('ter len 0 \r\n')
+    time.sleep(0.3)
+    s.send('show run \r\n')
+    time.sleep(0.3)
+    output.append(s.recv(65535).split('\r\n'))
+    prompt = output[-1][-1]
+    print "Prompt is " + prompt +'\n'
+    s.close()
+
+    for command in output:
+        for line in command:
+            print line
 
 
 def TBD():
@@ -23,18 +59,8 @@ def TBD():
     # login=["lions", "lions", "enable 15", "bonanza1947", "ter len 0"]
     login=["ter len 0"]
 
-    # check how many arguments we got.  the first si the application the second should be username
+   #'''creates directory ig not exists'''
 
-    if len(sys.argv) <= 1:
-        print "Usage: ssh.py <ip_address> <port>"
-        sys.exit(0)
-    elif len(sys.argv) < 3:
-        port=23
-    else:
-        port=int(sys.argv[2])
-    ips=sys.argv[1]
-
-    path = ts
     os.mkdir(path, 0755)
     if not os.path.exists(ips):
         os.mkdir(ips, 0755)

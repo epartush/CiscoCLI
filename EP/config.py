@@ -24,7 +24,7 @@ def load_config(path):
                 if word[0] == '%':
                     print "Enter Value for " + word[1:]
                     line[line.index(word)] = raw_input()
-        new_conf.append (' '.join(line))
+        new_conf.append(' '.join(line))
     return new_conf
 
 def writetofile (newconfig,filename):

@@ -39,4 +39,6 @@ Done -  input validation - 'chars' --> is a digit is not working
 Version 2.0
 GUI - Kivy - downloaded at the windows station
 
-
+bug
+if output folder doesnt exists, the program fail.
+    we should create the folder
