@@ -51,13 +51,10 @@ def devcon(show_commands,devices,device):
             s.send('enable\r')
             s.send(dev['enable']+ '\r')
     #print s.recv(1024)
+        sendc('ter len 0', ' ')
     else:
         print "what tha?"
-    #output.append(s.recv(1024).split('\r\n'))
 
-    #sendc('ter len 0', ' ')
-    #sendc('show run',5)
-    #sendc('show ip protocols',' ')
     for show in show_commands:
         if show == 'show run':
             print "\n\n\nBingo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n\n"
@@ -69,9 +66,24 @@ def devcon(show_commands,devices,device):
     s.close()
 
 
+    #for command in output:
+    #    for line in command:
+    #        print line
+
+    print output
+    return output
+
+
+def writetofile (output,filename):
+    import time
+    from datetime import datetime
+    TS = datetime.fromtimestamp(time.time()).strftime('%H-%M-%S')
+    f = open ('show_output/'+filename+TS+'.txt', 'w+')
     for command in output:
         for line in command:
             print line
+            f.write(line+'\n')
+    f.close()
 
 
 def TBD():
