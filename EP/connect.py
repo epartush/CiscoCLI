@@ -4,7 +4,18 @@ import time
 import datetime
 from os import path
 
-def devcon(config,devices,device):
+
+
+def devcon(show_commands,devices,device):
+    def sendc(command, timer):
+        if timer == ' ':
+            timer = 0.2
+        print "!! " +command+ " !!"
+        s.send(command + '\r')
+        time.sleep(timer)
+        output.append(s.recv(65535).split('\r\n'))
+
+
     dev = devices[int(device)]
     output=[]
 
@@ -24,29 +35,39 @@ def devcon(config,devices,device):
     port= int(dev['port'])
     s.connect((dev['ip'], port))
     time.sleep(1)
-    output.append(s.recv(512).split('\r\n'))
-    print output[-1][-1][1:]
-    #s.recv(0)
-    if output[-1][-1][1:]== 'sername: ':
+    output.append(s.recv(512).rstrip().split('\r\n'))
+    if output[-1][-1][1:]== 'sername:':
         print "this is awsome!!"
-        s.send(dev['username'] + '\r\n')
-        time.sleep(0.2)
-        output.append(s.recv(100).split('\r\n'))
-        s.send(dev['password'] + '\r\n')
-        time.sleep(0.2)
-        output.append(s.recv(100).split('\r\n'))
+        sendc(dev['username'], ' ')
+        sendc(dev['password'], ' ')
+
+        print "I'm in! \n"
+        prompt = output[-1][-1]
+        print "Prompt is " + prompt + '\n'
+        if prompt[-1] == '#':
+            print "No need for escalation, let's go to work\n"
+        elif prompt[-1] == '>':
+            print "Enabling with " + dev['enable']
+            s.send('enable\r')
+            s.send(dev['enable']+ '\r')
     #print s.recv(1024)
     else:
         print "what tha?"
     #output.append(s.recv(1024).split('\r\n'))
-    s.send('ter len 0 \r\n')
-    time.sleep(0.3)
-    s.send('show run \r\n')
-    time.sleep(0.3)
-    output.append(s.recv(65535).split('\r\n'))
-    prompt = output[-1][-1]
-    print "Prompt is " + prompt +'\n'
+
+    #sendc('ter len 0', ' ')
+    #sendc('show run',5)
+    #sendc('show ip protocols',' ')
+    for show in show_commands:
+        if show == 'show run':
+            print "\n\n\nBingo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n\n"
+            sendc(show,5)
+        else:
+            sendc(show, ' ')
+
+
     s.close()
+
 
     for command in output:
         for line in command:
@@ -54,10 +75,7 @@ def devcon(config,devices,device):
 
 
 def TBD():
-    # shows=['show clock']
-    shows=["show running","show ip int br","show ip route", "show ip protocols", "show clock","show platform", "show module", "show version", "show cdp ne", "show inventory | i PID"]
-    # login=["lions", "lions", "enable 15", "bonanza1947", "ter len 0"]
-    login=["ter len 0"]
+
 
    #'''creates directory ig not exists'''
 
@@ -83,18 +101,7 @@ def TBD():
     f.write(data)
     print "####Login complete###\n"
 
-    data = s.recv(0)
-    prompt = " "
-    s.send ('\n')
-    s.send ('\n')
-    time.sleep(0.5)
-    prompt = s.recv(12)
-    print prompt
-    s.send ('\n')
-    #time.sleep(0.5)
-    #data = s.recv(8192)
-    #print data
-    #data = s.recv (0)
+
     print ts
 
 

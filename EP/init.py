@@ -4,6 +4,7 @@ import dev
 import mydevices
 import config
 import connect
+import show_commands
 import datetime
 import time
 from os import listdir
@@ -81,7 +82,7 @@ while True:
 
         raw_input("\nPress any key..")
     elif input == '10':
-        shows = ["show running", "show ip int br"]
+        shows = show_commands.shows
         dev.printdevs(devices)
         connect.devcon(shows, devices, raw_input("Select device:"))
         break

@@ -42,3 +42,7 @@ GUI - Kivy - downloaded at the windows station
 bug
 if output folder doesnt exists, the program fail.
     we should create the folder
+select a device out of index will crash the program  - when on menu 10 - connect
+
+
+****no need for timer!!  we need to get back to the prompt !
