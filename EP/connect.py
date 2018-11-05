@@ -15,8 +15,12 @@ def devcon(show_commands,devices,device):
         time.sleep(timer)
         output.append(s.recv(65535).split('\r\n'))
 
-
-    dev = devices[int(device)]
+    while True:
+        if int(device) < len(devices):
+            dev = devices[int(device)]
+            break
+        else:
+            device=raw_input("Select Device: ")
     output=[]
 
     print "THIS IS DEVCON Function"
