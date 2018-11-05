@@ -36,3 +36,6 @@ def writetofile (newconfig,filename):
         print line
         f.write(line+'\n')
     f.close()
+
+
+

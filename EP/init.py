@@ -21,7 +21,7 @@ mypath='templates/'
 
 '''Menu '''
 while True:
-    print" 1. Device List \n 2. Devices Menu\n 3. Config Menu \n e. Exit"
+    print" 1. Device List \n 2. Devices Menu\n 3. Config Menu \n 10. Pull info from device \n e. Exit"
     input=raw_input("Select: ")
     if input == '1':
         dev.printdevs(devices)
@@ -82,10 +82,22 @@ while True:
 
         raw_input("\nPress any key..")
     elif input == '10':
-        shows = show_commands.shows
+        shows = show_commands.show_menu()
         dev.printdevs(devices)
-        connect.devcon(shows, devices, raw_input("Select device:"))
-        break
+        output=connect.devcon(shows, devices, raw_input("Select device:"))
+
+        while True:
+            savetofile= raw_input("Save to file? [Y/N]")
+            if savetofile.capitalize()=='Y':
+                filename = raw_input("Enter filename:")
+                connect.writetofile(output,filename)
+                break
+            if savetofile.capitalize()=='N':
+                for command in output:
+                    for line in command:
+                        print line
+                break
+
     elif input== 'e':
         break
 
