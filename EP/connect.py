@@ -9,7 +9,7 @@ from os import path
 def devcon(show_commands,devices,device):
     def sendc(command, timer):
         if timer == ' ':
-            timer = 0.2
+            timer = 0.3
         print "!! " +command+ " !!"
         s.send(command + '\r')
         time.sleep(timer)
@@ -41,11 +41,11 @@ def devcon(show_commands,devices,device):
     time.sleep(1)
     output.append(s.recv(512).rstrip().split('\r\n'))
     if output[-1][-1][1:]== 'sername:':
-        print "this is awsome!!"
+        #print "this is awsome!!"
         sendc(dev['username'], ' ')
         sendc(dev['password'], ' ')
 
-        print "I'm in! \n"
+        print "Login Succesful  \n"
         prompt = output[-1][-1]
         print "Prompt is " + prompt + '\n'
         if prompt[-1] == '#':
@@ -60,7 +60,7 @@ def devcon(show_commands,devices,device):
         print "what tha?"
 
     for show in show_commands:
-        if show == 'show run':
+        if show == 'show running':
             print "\n\n\nBingo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n\n"
             sendc(show,5)
         else:
@@ -69,10 +69,6 @@ def devcon(show_commands,devices,device):
 
     s.close()
 
-
-    #for command in output:
-    #    for line in command:
-    #        print line
 
     print output
     return output
@@ -98,28 +94,6 @@ def TBD():
     os.mkdir(path, 0755)
     if not os.path.exists(ips):
         os.mkdir(ips, 0755)
-
-
-    # Create a Socket
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    # Connect to the Server 'IP' and Port
-    # s.connect(('10.56.100.1',23))
-    print "Connecting to "+ips+":"+ str(port)
-    s.connect((ips,port))
-
-
-    for command in login:
-        s.send (command + '\n')
-        time.sleep(0.3)
-
-    f = open(path+'/'+ips+"_"+"login"+".txt",'w+')
-    data = s.recv(1024)
-    f.write(data)
-    print "####Login complete###\n"
-
-
-    print ts
-
 
 
     s.recv(0)

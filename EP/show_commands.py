@@ -5,13 +5,18 @@ def show_menu():
     select=[]
     shows=[]
     while True:
+
         for show in shows_menu:
             if str(shows_menu.index((show))) not in select:
                 print str(shows_menu.index(show))+". "+show
+        print '======= Selected ======'
+        for stored in shows:
+            print stored
+
 
         select.append(raw_input('Select a number or "e" to continue: '))
         if select[-1].isdigit() and int(select[-1]) < len(shows_menu):
-            print select[-1] + " " + str(len(shows_menu))
+            #print select[-1] + " " + str(len(shows_menu))
             shows.append(shows_menu[int(select[-1])])
         elif select[-1]=='e':
             break
