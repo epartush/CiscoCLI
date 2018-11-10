@@ -3,24 +3,24 @@ import sys,os
 import time
 import datetime
 from os import path
-
+import os
 
 
 def devcon(show_commands,devices,device):
     def sendc(command, timer):
         if timer == ' ':
             timer = 0.3
-        print "!! " +command+ " !!"
+        #print "!! " +command+ " !!"
         s.send(command + '\r')
         time.sleep(timer)
         output.append(s.recv(65535).split('\r\n'))
 
     while True:
-        if int(device) < len(devices):
+        if device.isdigit() and int(device) < len(devices):
             dev = devices[int(device)]
             break
         else:
-            device=raw_input("Select Device: ")
+            device=raw_input("Select Device [0-" +str(len(devices)-1) + "]: ")
     output=[]
 
     print "THIS IS DEVCON Function"
@@ -60,6 +60,8 @@ def devcon(show_commands,devices,device):
         print "what tha?"
 
     for show in show_commands:
+        #cls
+        print str(show_commands.index(show)+1) + "/" + str(len(show_commands))
         if show == 'show running':
             print "\n\n\nBingo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n\n"
             sendc(show,5)

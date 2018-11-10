@@ -5,7 +5,7 @@ def show_menu():
     select=[]
     shows=[]
     while True:
-
+        #cls
         for show in shows_menu:
             if str(shows_menu.index((show))) not in select:
                 print str(shows_menu.index(show))+". "+show

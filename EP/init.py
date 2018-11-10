@@ -7,6 +7,7 @@ import connect
 import show_commands
 import datetime
 import time
+import os
 from os import listdir
 from os.path import isfile, join
 
@@ -17,10 +18,13 @@ from os.path import isfile, join
 devices = mydevices.devices
 mypath='templates/'
 
-
+def cls():
+    os.system('cls' if os.name=='nt' else 'clear')
+cls=cls()
 
 '''Menu '''
 while True:
+    cls
     print" 1. Device List \n 2. Devices Menu\n 3. Config Menu \n 10. Pull info from device \n e. Exit"
     input=raw_input("Select: ")
     if input == '1':

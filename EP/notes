@@ -17,32 +17,33 @@ Gig 0/1     UP  IP address
 
 BUGs
 check with banners
-check bugs for Ul core
 
 Optimization
-[done]separated device list on different file
-[done]functions file..? or just functions
+[DONE]separated device list on different file
+[DONE]functions file..? or just functions
 
-Done -  input validation - 'chars' --> is a digit is not working
+[DONE] -  input validation - 'chars' --> is a digit is not working
 
- DONE -P2 - narrow down the input validation for IP
+[DONE] -P2 - narrow down the input validation for IP
+TODO P2
 
-
- TODO P1
- connection function
- commands function
- write to file function
- [Done]IN PARALLEL start on creating configuration files with variables
-
- Get show interface and select one
-
+function - save to file, to check the variable type  - if list of lists, to print with 2 loops for command, line, if list, just one loop
+Get show interface and select one
 Version 2.0
 GUI - Kivy - downloaded at the windows station
 
+ TODO P1
+[DONE] connection function
+[DONE] commands function
+[DONE] write to file function
+[Done]IN PARALLEL start on creating configuration files with variables
+procces bar or status
 bug
 if output folder doesnt exists, the program fail.
     we should create the folder
-select a device out of index will crash the program  - when on menu 10 - connect
+[FIXED]select a device out of index will crash the program  - when on menu 10 - connect
 
+** we need to get back to the prompt !
 
-****no need for timer!!  we need to get back to the prompt !
+error management for device connection - maybe using "TRY" function
+add ability to configure the device
