@@ -1,11 +1,12 @@
 
 def show_menu():
+    import os
     shows_menu=["show running","show ip int br","show ip route", "show ip protocols", "show clock","show platform", "show module", "show version", "show cdp ne", "show inventory | i PID"]
     #shows_menu=['show ver','show ip int br']
     select=[]
     shows=[]
     while True:
-        #cls
+        os.system('cls' if os.name=='nt' else 'clear')
         for show in shows_menu:
             if str(shows_menu.index((show))) not in select:
                 print str(shows_menu.index(show))+". "+show
@@ -22,6 +23,6 @@ def show_menu():
             break
 
 
-    print select
+    #print select
     return shows
 

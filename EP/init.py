@@ -20,11 +20,11 @@ mypath='templates/'
 
 def cls():
     os.system('cls' if os.name=='nt' else 'clear')
-cls=cls()
+
 
 '''Menu '''
 while True:
-    cls
+    cls()
     print" 1. Device List \n 2. Devices Menu\n 3. Config Menu \n 10. Pull info from device \n e. Exit"
     input=raw_input("Select: ")
     if input == '1':
@@ -95,11 +95,13 @@ while True:
             if savetofile.capitalize()=='Y':
                 filename = raw_input("Enter filename:")
                 connect.writetofile(output,filename)
+                raw_input("Press any key to continue..")
                 break
             if savetofile.capitalize()=='N':
                 for command in output:
                     for line in command:
                         print line
+                raw_input("Press any key to continue..")
                 break
 
     elif input== 'e':

@@ -5,6 +5,9 @@ import datetime
 from os import path
 import os
 
+def cls():
+    os.system('cls' if os.name=='nt' else 'clear')
+
 
 def devcon(show_commands,devices,device):
     def sendc(command, timer):
@@ -58,10 +61,11 @@ def devcon(show_commands,devices,device):
         sendc('ter len 0', ' ')
     else:
         print "what tha?"
-
+    astrix=0
     for show in show_commands:
-        #cls
-        print str(show_commands.index(show)+1) + "/" + str(len(show_commands))
+        cls()
+        astrix+=1
+        print '#'*astrix + '_'*int(len(show_commands)-astrix)
         if show == 'show running':
             print "\n\n\nBingo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n\n"
             sendc(show,5)
@@ -72,7 +76,7 @@ def devcon(show_commands,devices,device):
     s.close()
 
 
-    print output
+    #print output
     return output
 
 
