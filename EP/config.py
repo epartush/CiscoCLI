@@ -16,7 +16,7 @@ def load_config(path):
     for line in template:
         print ' '.join(line)
 
-    raw_input("\nPress any key to rebuild\n")
+    raw_input("\nPress any key to rebuild.. \n")
     for line in template:
         print ' '.join(line)
         for word in line:

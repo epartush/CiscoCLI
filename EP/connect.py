@@ -3,24 +3,27 @@ import sys,os
 import time
 import datetime
 from os import path
+import os
+
+def cls():
+    os.system('cls' if os.name=='nt' else 'clear')
 
 
-
-def devcon(show_commands,devices,device):
+def devcon(commands,devices,device,isconf):
     def sendc(command, timer):
         if timer == ' ':
             timer = 0.3
-        print "!! " +command+ " !!"
+        #print "!! " +command+ " !!"
         s.send(command + '\r')
         time.sleep(timer)
         output.append(s.recv(65535).split('\r\n'))
 
     while True:
-        if int(device) < len(devices):
+        if device.isdigit() and int(device) < len(devices):
             dev = devices[int(device)]
             break
         else:
-            device=raw_input("Select Device: ")
+            device=raw_input("Select Device [0-" +str(len(devices)-1) + "]: ")
     output=[]
 
     print "THIS IS DEVCON Function"
@@ -58,19 +61,31 @@ def devcon(show_commands,devices,device):
         sendc('ter len 0', ' ')
     else:
         print "what tha?"
+    if isconf=='config':
+        print "conf t\n"
+        sendc('conf t', ' ')
+        for command in commands:
+            print command
+            sendc(command, ' ')
+        sendc('end', ' ')
+    else:
 
-    for show in show_commands:
-        if show == 'show running':
-            print "\n\n\nBingo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n\n"
-            sendc(show,5)
-        else:
-            sendc(show, ' ')
+        astrix=0
+        for show in commands:
+            cls()
+            astrix+=1
+            print '#'*astrix + '_'*int(len(commands)-astrix)
+            if show == 'show running':
+                print "\n\n5 Seconds.. \n\n"
+                sendc(show,5)
+            else:
+                sendc(show, ' ')
 
 
     s.close()
 
 
-    print output
+    #print output
     return output
 
 
