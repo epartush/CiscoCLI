@@ -59,8 +59,8 @@ while True:
                 if int(file_name) <= onlyfiles.index(files):
                     file_name = onlyfiles[int(file_name)]
                     break
-
-        print "Loading"+ file_name +" Template\n"
+        cls()
+        print "Loading "+ file_name +" Template\n"
         path = mypath+file_name
         device_config = config.load_config(path)
         while True:
@@ -72,14 +72,21 @@ while True:
             if savetofile.capitalize()=='N':
                 for line in device_config:
                     print line
+                raw_input("Press any key to continue..")
                 break
 
         while True:
             if raw_input("Provision configs to device? [Y/N]").capitalize() == 'Y':
                 dev.printdevs(devices)
-                connect.devcon(device_config,devices,raw_input("Select device:"))
+                output=connect.devcon(device_config,devices,raw_input("Select device:"),'config')
+                raw_input(("Press any key to see output.."))
+                for command in output:
+                    for line in command:
+                        print line
+                raw_input("Press any key to continue..")
                 break
             elif raw_input("Provision configs to device? [Y/N]").capitalize() == 'N':
+                raw_input("Press any key to continue..")
                 break
 
 
@@ -88,7 +95,7 @@ while True:
     elif input == '10':
         shows = show_commands.show_menu()
         dev.printdevs(devices)
-        output=connect.devcon(shows, devices, raw_input("Select device:"))
+        output=connect.devcon(shows, devices, raw_input("Select device:"),'show')
 
         while True:
             savetofile= raw_input("Save to file? [Y/N]")

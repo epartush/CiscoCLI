@@ -36,8 +36,8 @@ GUI - Kivy - downloaded at the windows station
 [DONE] connection function
 [DONE] commands function
 [DONE] write to file function
-[Done]IN PARALLEL start on creating configuration files with variables
-procces bar or status
+[Done] IN PARALLEL start on creating configuration files with variables
+[DONE] procces bar or status
 bug
 if output folder doesnt exists, the program fail.
     we should create the folder

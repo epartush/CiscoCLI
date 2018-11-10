@@ -9,7 +9,7 @@ def cls():
     os.system('cls' if os.name=='nt' else 'clear')
 
 
-def devcon(show_commands,devices,device):
+def devcon(commands,devices,device,isconf):
     def sendc(command, timer):
         if timer == ' ':
             timer = 0.3
@@ -61,16 +61,25 @@ def devcon(show_commands,devices,device):
         sendc('ter len 0', ' ')
     else:
         print "what tha?"
-    astrix=0
-    for show in show_commands:
-        cls()
-        astrix+=1
-        print '#'*astrix + '_'*int(len(show_commands)-astrix)
-        if show == 'show running':
-            print "\n\n\nBingo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n\n"
-            sendc(show,5)
-        else:
-            sendc(show, ' ')
+    if isconf=='config':
+        print "conf t\n"
+        sendc('conf t', ' ')
+        for command in commands:
+            print command
+            sendc(command, ' ')
+        sendc('end', ' ')
+    else:
+
+        astrix=0
+        for show in commands:
+            cls()
+            astrix+=1
+            print '#'*astrix + '_'*int(len(commands)-astrix)
+            if show == 'show running':
+                print "\n\n5 Seconds.. \n\n"
+                sendc(show,5)
+            else:
+                sendc(show, ' ')
 
 
     s.close()
