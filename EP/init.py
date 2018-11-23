@@ -5,6 +5,7 @@ import mydevices
 import config
 import connect
 import show_commands
+import scenario
 import datetime
 import time
 import os
@@ -25,7 +26,7 @@ def cls():
 '''Menu '''
 while True:
     cls()
-    print" 1. Device List \n 2. Devices Menu\n 3. Config Menu \n 10. Pull info from device \n e. Exit"
+    print" 1.  Device List \n 2.  Devices Menu\n 3.  Config Menu \n 4.  Scenarios \n 10. Pull info from device \n e.  Exit"
     input=raw_input("Select: ")
     if input == '1':
         dev.printdevs(devices)
@@ -88,8 +89,13 @@ while True:
             elif raw_input("Provision configs to device? [Y/N]").capitalize() == 'N':
                 raw_input("Press any key to continue..")
                 break
-
-
+        raw_input("\nPress and key..")
+    elif input =='4':
+        scenrio_menu=raw_input("1. IPSec WAN link\n2. MACSec WAN link")
+        if scenrio_menu.isdigit() and scenrio_menu=='1':
+            scenario.ipsec()
+        elif scenrio_menu.isdigit() and scenrio_menu =='2':
+            print "MACSEEEECCC"
 
         raw_input("\nPress any key..")
     elif input == '10':
