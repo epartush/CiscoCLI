@@ -71,9 +71,10 @@ def editdev(mydevices,num):
         dev['ip'] = raw_input("Enter IPv4 for Telnet[" +dev['ip']+ "]:") or dev['ip']
 
         if len(dev['ip'].split(".")) == 4:
+            print dev['ip'].split(".")
             for octet in dev['ip'].split("."):
                 if octet.isdigit() == True:
-                    if octet != '' and int(octet) > 0 and int(octet) <= 255:
+                    if octet != '' and int(octet) >= 0 and int(octet) <= 255:
                         inputok += 1
                     else:
                         print str(octet) + " is not a number between 1 - 255"

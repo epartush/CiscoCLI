@@ -42,7 +42,9 @@ def devcon(commands,devices,device,isconf):
     port= int(dev['port'])
     s.connect((dev['ip'], port))
     time.sleep(1)
-    output.append(s.recv(512).rstrip().split('\r\n'))
+    output.append(s.recv(1024).rstrip().split('\r\n'))
+    #print "output" + str(output)
+    #print output[-1][-1][1:]
     if output[-1][-1][1:]== 'sername:':
         #print "this is awsome!!"
         sendc(dev['username'], ' ')
