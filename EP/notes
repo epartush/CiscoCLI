@@ -27,10 +27,12 @@ Optimization
 [DONE] -P2 - narrow down the input validation for IP
 TODO P2
 
-function - save to file, to check the variable type  - if list of lists, to print with 2 loops for command, line, if list, just one loop
+[DONE]function - save to file, to check the variable type  - if list of lists, to print with 2 loops for command, line, if list, just one loop
 Get show interface and select one
 Version 2.0
 GUI - Kivy - downloaded at the windows station
+make the ip check input validation function better (while True, and check each octet)  right now its very stupid.
+
 
  TODO P1
 [DONE] connection function
@@ -45,5 +47,10 @@ if output folder doesnt exists, the program fail.
 
 ** we need to get back to the prompt !
 
-error management for device connection - maybe using "TRY" function
+* error management for device connection - maybe using "TRY" function
 add ability to configure the device
+
+add "back" on menus
+
+BUGS
+3 config menu --> IPSec -> no provision configs to device --> no provision config to device  (twice)

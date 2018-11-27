@@ -11,16 +11,20 @@ set transform-set TS
 
 int %int
 description
-ip add %ip
+ip add dhcp
 
 int loopback 10
 description "IPSec Loopback"
-ip add %tunnel 255.255.255.255
+ip add %tunnel 255.255.255.252
 
-int virtual-template type tunnel 10
+int tunnel 10
 ip unnumberd lo 10
-tunnel source %ip
+tunnel source %int
+tunnel destination %dest
 tunnel mode ipsec ipv4
 tunnel protection ipsec profile IPSECProfile
-!
-more lines
+g
+g
+g
+g
+g
