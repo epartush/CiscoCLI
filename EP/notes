@@ -51,3 +51,6 @@ if output folder doesnt exists, the program fail.
 add ability to configure the device
 
 add "back" on menus
+
+BUGS
+3 config menu --> IPSec -> no provision configs to device --> no provision config to device  (twice)

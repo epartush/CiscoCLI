@@ -1,28 +1,43 @@
-
+import config
 def ipsec():
     devices = [
         {
+            'int': 'gi0/1',
+            'ip': '10.0.0.1',
             'mode': 'NAT',
-            'int': ' ',
-            'ip': '1.1.1.1'
         },
 
         {
-            'mode': 'NAT',
+
             'int': ' ',
-            'ip': '1.1.1.2/30'
+            'ip': '101.1.2.3',
+            'mode': 'Static',
         },
     ]
     side_a=devices[0]
     side_b=devices[1]
-    #print '-'*20+'\n'+'| '+ ' '*1+'ipsec'
     spaces = 50
-    table=['Mode: ','WAN Interface: ','WAN IP: ']
-
+    table=['WAN Interface: ','WAN IP[IP/DHCP]: ','Mode[NAT/P2P]: ']
     print "Side A"+' '*int(spaces-len('Side A')) +"Side B"+'\n'+'------'+' '*int(spaces-len('Side A'))+'------'
-    print table[0]+side_a['mode'] + ' '*int(spaces-len(side_a['mode'])-len(table[0]))+table[0]+side_b['mode']
-    print table[1]+side_a['int'] + ' '*int(spaces-len(side_a['int'])-len(table[1]))+table[1]+side_b['int']
-    print table[2]+side_a['ip'] + ' '*int(spaces-len(table[2])-len(side_a['ip']))+table[2]+side_b['ip']
 
-    #for line in table:
-    #    print line+side_a[]
+    index=0
+    for value in side_a:
+        print table[index] + side_a[value] + ' '*int(spaces-len(side_a[value])-len(table[index])) + table[index]+side_b[value]
+        index += 1
+    side_a['dest']=side_b['ip']
+    side_a['tunnel']='10.10.10.1'
+    side_b['dest']=side_a['ip']
+    side_b['tunnel']='10.10.10.2'
+    raw_input("press any key..")
+    if side_a['mode'] == 'NAT':
+        side_a_conf = config.load_config('templates/IPSecOverNat',side_a)
+
+    if side_b['mode'] == 'Static':
+        side_b_conf = config.load_config('templates/IPSec',side_b)
+
+    for a,b in zip(side_a_conf,side_b_conf):
+        if len(side_a_conf) > len(side_b_conf):
+            print a + ' '*(50-int(len(a))) + b
+        else:
+            print b + ' '*(50-int(len(b))) + a
+    raw_input("press any key..")

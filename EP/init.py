@@ -63,7 +63,7 @@ while True:
         cls()
         print "Loading "+ file_name +" Template\n"
         path = mypath+file_name
-        device_config = config.load_config(path)
+        device_config = config.load_config(path,0)
         while True:
             savetofile= raw_input("Save to file? [Y/N]")
             if savetofile.capitalize()=='Y':
