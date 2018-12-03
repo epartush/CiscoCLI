@@ -4,6 +4,7 @@ group 14
 crypto ikev2 keyring IKEv2Keyring
 
 crypto ikev2 profile IKEv2Profile
+virtual-template 10
 
 
 crypto ipsec profile IPSecProfile
@@ -15,7 +16,7 @@ ip add %ip
 
 int loopback 10
 description "IPSec Loopback"
-ip add %tunnel 255.255.255.255
+ip add %tunnel 255.255.255.252
 
 int virtual-template type tunnel 10
 ip unnumberd lo 10
@@ -23,4 +24,3 @@ tunnel source %ip
 tunnel mode ipsec ipv4
 tunnel protection ipsec profile IPSECProfile
 !
-more lines

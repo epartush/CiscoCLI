@@ -23,8 +23,4 @@ tunnel source %int
 tunnel destination %dest
 tunnel mode ipsec ipv4
 tunnel protection ipsec profile IPSECProfile
-g
-g
-g
-g
-g
+
