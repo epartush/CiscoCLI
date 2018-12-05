@@ -48,7 +48,7 @@ def ipsec():
                 if value==1:
                     break
                 else:
-                    execute(side_a,side_b)
+                    side_a_config,side_b_config=execute(side_a,side_b)
                     break
         elif input.lower() == 'c':
             while True:
@@ -61,6 +61,31 @@ def ipsec():
         elif input.lower() == 'b':
             break
 
+
+        while True:
+            savetofile= raw_input("Save to file? [Y/N]")
+            if savetofile.capitalize()=='Y':
+                filenamea = raw_input("Enter filename for SideA:")
+                filenameb = raw_input("Enter filename for SideB:")
+                config.writetofile(side_a_config,filenamea)
+                config.writetofile(side_b_config,filenameb)
+                break
+
+            raw_input("Press any key to continue..")
+            break
+
+'''while True:
+    if raw_input("Provision configs to device? [Y/N]").capitalize() == 'Y':
+        dev.printdevs(devices)
+        output=connect.devcon(device_config,devices,raw_input("Select device:"),'config')
+        raw_input(("Press any key to see output.."))
+        for command in output:
+            for line in command:
+                print line
+        raw_input("Press any key to continue..")
+        break
+    else:
+        break'''
 
 def execute(side_a,side_b):
     side_a['dest']=side_b['ip']
@@ -93,6 +118,7 @@ def execute(side_a,side_b):
 
     for a,b in zip(side_a_conf,side_b_conf):
         print a + ' '*(50-int(len(a))) + b
+    return side_a_conf,side_b_conf
     raw_input("press any key..")
 
 
