@@ -115,24 +115,4 @@ def TBD():
 
     s.recv(0)
 
-    #print "DATA =" + data  + '\n'
 
-    for command in shows:
-        print 'Running '+command+".."
-        # f = open(path+'/'+ips+"_"+"_".join(command.split())+".txt",'wr')
-        # f.write(command)
-        fi = open(ips+'/'+"_".join(command.split())+"_"+path+".txt",'w+')
-        fi.write("########" +command+"##########\n" )
-        s.send (command + '\n')
-        time.sleep(0.3)
-        data = s.recv(65536)
-        time.sleep(0.3)
-        #print data
-        # f.write(data)
-        fi.write(data)
-        #f.close()
-        fi.close()
-        print "Done.\n"
-        time.sleep(0.3)
-        s.recv(0)
-    print prompt

@@ -86,8 +86,7 @@ while True:
                         print line
                 raw_input("Press any key to continue..")
                 break
-            elif raw_input("Provision configs to device? [Y/N]").capitalize() == 'N':
-                raw_input("Press any key to continue..")
+            else:
                 break
         raw_input("\nPress and key..")
     elif input =='4':

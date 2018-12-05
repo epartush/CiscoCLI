@@ -3,9 +3,9 @@ def load_config(path,attr):
     new_conf=[]
     template=[]
     if attr != 0:
-        print  attr
+        print  "Using attributes"
     else:
-        print "00000000"
+        print "Using open template"
 
     #f = open(path,'r')
     f = [line.rstrip('\n') for line in open(path, 'r')]
