@@ -49,6 +49,17 @@ def ipsec():
                     break
                 else:
                     side_a_config,side_b_config=execute(side_a,side_b)
+                    while True:
+                        savetofile= raw_input("Save to file? [Y/N]")
+                        if savetofile.capitalize()=='Y':
+                            filenamea = raw_input("Enter filename for SideA:")
+                            filenameb = raw_input("Enter filename for SideB:")
+                            config.writetofile(side_a_config,filenamea)
+                            config.writetofile(side_b_config,filenameb)
+                            break
+
+                        raw_input("Press any key to continue..")
+                        break
                     break
         elif input.lower() == 'c':
             while True:
@@ -62,17 +73,7 @@ def ipsec():
             break
 
 
-        while True:
-            savetofile= raw_input("Save to file? [Y/N]")
-            if savetofile.capitalize()=='Y':
-                filenamea = raw_input("Enter filename for SideA:")
-                filenameb = raw_input("Enter filename for SideB:")
-                config.writetofile(side_a_config,filenamea)
-                config.writetofile(side_b_config,filenameb)
-                break
 
-            raw_input("Press any key to continue..")
-            break
 
 '''while True:
     if raw_input("Provision configs to device? [Y/N]").capitalize() == 'Y':
