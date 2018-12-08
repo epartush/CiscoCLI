@@ -1,4 +1,4 @@
-
+import re
 # print core['name'] +" " + core['ip']
 
 # core['ip'] = "10.56.100."+str(2)
@@ -35,10 +35,10 @@ def adddev(mydevices):
     dev=mydevices[-1]
     inputok = 0
     dev['name'] = raw_input("Please enter the hostname:")
-    while inputok != 4:
+    # can be removed if
+    '''while inputok != 4:
         inputok = 0
         dev['ip'] = raw_input("Enter IPv4 for Telnet: ")
-
         if len(dev['ip'].split(".")) == 4:
             for octet in dev['ip'].split("."):
                 if octet.isdigit() == True:
@@ -52,10 +52,17 @@ def adddev(mydevices):
                     print "Numbers only"
         else:
             print "Use IPv4 Address format: x.x.x.x"
+    '''
+    while True:
+        dev['ip'] = raw_input("Enter Management IPv4 address: ")
+        if re.match(r'^((\d{1,2}|1\d{2}|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d{2}|2[0-4]\d|25[0-5])$', dev['ip']):
+            break
+        else:
+            print "Invalid IP"
 
-    while 1:
+    while True:
         dev['port'] = raw_input("Please enter port number [23]: ") or '23'
-        if dev['port'].isdigit() == True and int(dev['port']) < 65532:
+        if dev['port'].isdigit() and int(dev['port']) < 65535:
             break
     dev['username']=raw_input("Username: ")
     dev['password'] = raw_input("Password: ")
@@ -66,7 +73,7 @@ def editdev(mydevices,num):
     dev=mydevices[int(num)]
     inputok = 0
     dev['name'] = raw_input("Please enter the hostname[" +dev['name']+ "]:") or dev['name']
-    while inputok != 4:
+    '''while inputok != 4:
         inputok = 0
         dev['ip'] = raw_input("Enter IPv4 for Telnet[" +dev['ip']+ "]:") or dev['ip']
 
@@ -84,10 +91,16 @@ def editdev(mydevices,num):
                     print "Numbers only"
         else:
             print "Use IPv4 Address format: x.x.x.x"
-
-    while 1:
+'''
+    while True:
+        dev['ip'] = raw_input("Enter Management IPv4 address: ") or dev['ip']
+        if re.match(r'^((\d{1,2}|1\d{2}|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d{2}|2[0-4]\d|25[0-5])$', dev['ip']):
+            break
+        else:
+            print "Invalid IP"
+    while True:
         dev['port'] = raw_input("Please enter port number [" +dev['port']+ "]:") or dev['port']
-        if dev['port'].isdigit() == True and int(dev['port']) < 65532:
+        if dev['port'].isdigit() and int(dev['port']) < 65532:
             break
     dev['username']=raw_input("Username [" +dev['username']+ "]:") or dev['username']
     dev['password'] = raw_input("Password [" +dev['password']+ "]:") or dev['password']

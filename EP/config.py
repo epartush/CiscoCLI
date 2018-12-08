@@ -9,6 +9,7 @@ def load_config(path,attr):
 
     #f = open(path,'r')
     f = [line.rstrip('\n') for line in open(path, 'r')]
+
     with open (path, 'r') as f:
         for line in f:
             line = line.strip('\n')
@@ -37,14 +38,13 @@ def load_config(path,attr):
     return new_conf
 
 def writetofile (newconfig,filename):
-    import time
+    import time,os
     from datetime import datetime
     TS = datetime.fromtimestamp(time.time()).strftime('%H-%M-%S')
+    if not os.path.exists('output/'):
+        os.mkdir('output', 0755)
     f = open ('output/'+filename+TS+'.txt', 'w+')
     for line in newconfig:
         print line
         f.write(line+'\n')
     f.close()
-
-
-

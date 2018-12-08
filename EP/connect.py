@@ -22,79 +22,83 @@ def devcon(commands,devices,device,isconf):
         if device.isdigit() and int(device) < len(devices):
             dev = devices[int(device)]
             break
+        elif device.lower() == 'b':
+            return 'none'
+
         else:
-            device=raw_input("Select Device [0-" +str(len(devices)-1) + "]: ")
+            device=raw_input("Select Device [0-" +str(len(devices)-1) + "] ; 'b' to go back: ")
     output=[]
 
-    print "THIS IS DEVCON Function"
-    #print "connecting to "+ dev['ip'] +" "+dev['name']
     print "using " +dev['username']+ ' as username and ' + dev['password'] + ' as password '
-
-    '''for line in config:
-        #print "pushing-> " + line
-        print str(config.index(line)+1) + " out of " + str(len(config))
-        sys.stdout.flush()
-        time.sleep(0.3)
-'''
 
     print "connecting to " + dev['ip'] + " " + dev['port'] + " " + dev['name']
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.settimeout(3)
     port= int(dev['port'])
-    s.connect((dev['ip'], port))
-    time.sleep(1)
-    output.append(s.recv(1024).rstrip().split('\r\n'))
-    #print "output" + str(output)
-    #print output[-1][-1][1:]
-    if output[-1][-1][1:]== 'sername:':
-        #print "this is awsome!!"
-        sendc(dev['username'], ' ')
-        sendc(dev['password'], ' ')
+    try:
+        s.connect((dev['ip'], port))
+        time.sleep(1)
+        output.append(s.recv(1024).rstrip().split('\r\n'))
+        if output[-1][-1][1:]== 'sername:':
+            sendc(dev['username'], ' ')
+            sendc(dev['password'], ' ')
 
-        print "Login Succesful  \n"
-        prompt = output[-1][-1]
-        print "Prompt is " + prompt + '\n'
-        if prompt[-1] == '#':
-            print "No need for escalation, let's go to work\n"
-        elif prompt[-1] == '>':
+            print "Login Succesful  \n"
+            prompt = output[-1][-1]
+            print "Prompt is " + prompt + '\n'
+            if prompt[-1] == '#':
+                print "No need for escalation, let's go to work\n"
+            elif prompt[-1] == '>':
+                print "Enabling with " + dev['enable']
+                s.send('enable\r')
+                s.send(dev['enable']+ '\r')
+            #print s.recv(1024)
+            sendc('ter len 0', ' ')
+        elif output[-1][-1][-1] == '>':
             print "Enabling with " + dev['enable']
             s.send('enable\r')
             s.send(dev['enable']+ '\r')
-    #print s.recv(1024)
-        sendc('ter len 0', ' ')
-    else:
-        print "what tha?"
-    if isconf=='config':
-        print "conf t\n"
-        sendc('conf t', ' ')
-        for command in commands:
-            print command
-            sendc(command, ' ')
-        sendc('end', ' ')
-    else:
+        else:
+            print "Check propmt Manually"
 
-        astrix=0
-        for show in commands:
-            cls()
-            astrix+=1
-            print '#'*astrix + '_'*int(len(commands)-astrix)
-            if show == 'show running':
-                print "\n\n5 Seconds.. \n\n"
-                sendc(show,5)
-            else:
-                sendc(show, ' ')
+        if isconf=='config':
+            print "conf t\n"
+            sendc('conf t', ' ')
+            for command in commands:
+                print command
+                sendc(command, 0.1)
+            sendc('end', 0.1)
+        else:
 
-
-    s.close()
+            astrix=0
+            for show in commands:
+                cls()
+                astrix+=1
+                print '#'*astrix + '-'*int(len(commands)-astrix)
+                if show == 'show running':
+                    print "\n\n5 Seconds.. \n\n"
+                    sendc(show , 5)
+                else:
+                    sendc(show, ' ')
 
 
-    #print output
-    return output
+        s.close()
+        return output
+
+    except socket.error , exc:
+        print "Error: %s" % exc
+        s.close()
+        return 'none'
+
+
 
 
 def writetofile (output,filename):
     import time
     from datetime import datetime
     TS = datetime.fromtimestamp(time.time()).strftime('%H-%M-%S')
+    if not os.path.exists('show_output/'):
+        os.mkdir('show_output', 0755)
     f = open ('show_output/'+filename+TS+'.txt', 'w+')
     for command in output:
         for line in command:

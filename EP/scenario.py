@@ -35,7 +35,7 @@ def ipsec():
         print table[1] + side_a['ip'] + ' '*int(spaces-len(side_a['ip'])-len(table[1])) + table[1]+side_b['ip']
         print table[2] + side_a['mode'] + ' '*int(spaces-len(side_a['mode'])-len(table[2])) + table[2]+side_b['mode']
         print table[3] + side_a['role'] + ' '*int(spaces-len(side_a['role'])-len(table[3])) + table[3]+side_b['role']
-        input = raw_input("\nPress C for change or E for execute or B for back..")
+        input = raw_input("\nPress M to Modify\nPress E to execute\nPress B to go back\n  Please enter your selection: ")
         if input.lower() == 'e':
             while True:
                 value =0
@@ -61,13 +61,17 @@ def ipsec():
                         raw_input("Press any key to continue..")
                         break
                     break
-        elif input.lower() == 'c':
+        elif input.lower() == 'm':
             while True:
-                num = raw_input("Select Device:[0-1]")
-                if num == '0' or num =='1':
-                    editdev(devices,num)
+                num = raw_input("Select Device:[A/B]")
+
+                if num == 'a':
+                    editdev(devices,'0')
                     break
-                elif num == 'b':
+                elif num.lower() == 'b':
+                    editdev(devices,'1')
+                    break
+                elif num == 'e':
                     break
         elif input.lower() == 'b':
             break
