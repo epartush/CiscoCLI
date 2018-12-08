@@ -27,18 +27,15 @@ def cls():
 '''Menu '''
 while True:
     cls()
-    print "\n ##### K300 #####"
-    print" 1.  Device List \n 2.  Devices Menu\n 3.  Config Menu \n 4.  Scenarios \n 10. Pull info from device \n e.  Exit"
+    print "\n ##### C17RU5 #####"
+    print" 1.  Devices Menu\n 2.  Config Menu \n 3.  Scenarios \n 10. Pull info from device \n e.  Exit"
     input=raw_input("Select: ")
+
     if input == '1':
-        dev.printdevs(devices)
-        print "\nYou have " + str(len(devices)) + " devices total."
-        raw_input("\nPress any key..")
-    elif input == '2':
         while True:
-            print " 1. Add device \n 2. Edit Device \n e. Back"
+            print " 1. Device list \n 2. Edit Device \n 3. Add device\nb. Back"
             device_input = raw_input("Select: ")
-            if device_input == '1':
+            if device_input == '3':
                 dev.adddev(devices)
                 print "You have " + str(len(devices)) + " devices total."
                 raw_input("\nPress any key..")
@@ -48,13 +45,19 @@ while True:
                 if num.isdigit() == True and int(num) < len(devices):
                     dev.editdev(devices,num)
                 break
-            elif device_input == 'e':
+            elif device_input == 'b':
                 break
-    elif input =='3':
+            elif device_input == '1':
+                dev.printdevs(devices)
+                print "\nYou have " + str(len(devices)) + " devices total."
+                raw_input("\nPress any key..")
+
+    elif input =='2':
         onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 
         for files in onlyfiles:
             print str(onlyfiles.index(files))+"." +files
+
 
         while True:
             file_name= raw_input("Select: ")
@@ -62,6 +65,9 @@ while True:
                 if int(file_name) <= onlyfiles.index(files):
                     file_name = onlyfiles[int(file_name)]
                     break
+            elif file_name == 'b':
+                print "WE shoudl do something here"
+
         cls()
         print "Loading "+ file_name +" Template\n"
         path = mypath+file_name
@@ -91,7 +97,7 @@ while True:
             else:
                 break
         raw_input("\nPress and key..")
-    elif input =='4':
+    elif input =='3':
         scenrio_menu=raw_input("1. IPSec WAN link\n2. MACSec WAN link")
         if scenrio_menu.isdigit() and scenrio_menu=='1':
             scenario.ipsec()

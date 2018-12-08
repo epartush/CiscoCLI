@@ -66,8 +66,8 @@ def devcon(commands,devices,device,isconf):
             sendc('conf t', ' ')
             for command in commands:
                 print command
-                sendc(command, ' ')
-                sendc('end', ' ')
+                sendc(command, 0.1)
+            sendc('end', 0.1)
         else:
 
             astrix=0
@@ -97,6 +97,8 @@ def writetofile (output,filename):
     import time
     from datetime import datetime
     TS = datetime.fromtimestamp(time.time()).strftime('%H-%M-%S')
+    if not os.path.exists('show_output/'):
+        os.mkdir('show_output', 0755)
     f = open ('show_output/'+filename+TS+'.txt', 'w+')
     for command in output:
         for line in command:
