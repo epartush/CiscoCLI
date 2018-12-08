@@ -11,6 +11,7 @@ import time
 import os
 from os import listdir
 from os.path import isfile, join
+import re
 
 #starttime = time.time()
 #ts = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d_%H_%M_%S')
@@ -26,6 +27,7 @@ def cls():
 '''Menu '''
 while True:
     cls()
+    print "\n ##### K300 #####"
     print" 1.  Device List \n 2.  Devices Menu\n 3.  Config Menu \n 4.  Scenarios \n 10. Pull info from device \n e.  Exit"
     input=raw_input("Select: ")
     if input == '1':
@@ -99,27 +101,49 @@ while True:
         raw_input("\nPress any key..")
     elif input == '10':
         shows = show_commands.show_menu()
-        dev.printdevs(devices)
-        output=connect.devcon(shows, devices, raw_input("Select device:"),'show')
+        if len(shows) != 0:
 
-        while True:
-            savetofile= raw_input("Save to file? [Y/N]")
-            if savetofile.capitalize()=='Y':
-                filename = raw_input("Enter filename:")
-                connect.writetofile(output,filename)
-                raw_input("Press any key to continue..")
-                break
-            if savetofile.capitalize()=='N':
-                for command in output:
-                    for line in command:
-                        print line
-                raw_input("Press any key to continue..")
-                break
+            dev.printdevs(devices)
+            output=connect.devcon(shows, devices, raw_input("Select device:"),'show')
 
+            if output != 'none':
+
+                while True:
+                    savetofile= raw_input("Save to file? [Y/N]")
+                    if savetofile.capitalize()=='Y':
+                        filename = raw_input("Enter filename:")
+                        connect.writetofile(output,filename)
+                        #raw_input("Press any key to continue..")
+                        break
+                    if savetofile.capitalize()=='N':
+                        for command in output:
+                            for line in command:
+                                print line
+                        #raw_input("Press any key to continue..")
+                        break
+            raw_input("Press any key to continue..")
     elif input== 'e':
         break
+    elif input =='t':
 
-#dev.printdev(devices)
+        while True:
+            ip = raw_input("Enter IP address:")
+            '''if len(ip.split(".")) == 4:
+                ip = ip.split(".")
+                if ip[0].isdigit() and int(ip[0])>0 and int(ip[0])<224 and ip[1].isdigit() and int(ip[1]) >= 0 and int(ip[1])<256:
+                    if ip[2].isdigit() and int(ip[2])>= 0 and int(ip[2])<256:
+                        if ip[3].isdigit() and int(ip[3])>=0 and int(ip[3]) < 255:
+                            break
+        
+        ip=".".join(ip)'''
+            if re.match(r'^((\d{1,2}|1\d{2}|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d{2}|2[0-4]\d|25[0-5])$', ip):
+                print "Valid IP"
+                break
+            else:
+                print "Invalid IP"
+        print ip
+        print type(ip)
+        #dev.printdev(devices)
 
 
 ## Calculate runtime ###

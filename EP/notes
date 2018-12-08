@@ -47,7 +47,7 @@ if output folder doesnt exists, the program fail.
 
 ** we need to get back to the prompt !
 
-* error management for device connection - maybe using "TRY" function
+[Done] error management for device connection - maybe using "TRY" function
 add ability to configure the device
 
 add "back" on menus

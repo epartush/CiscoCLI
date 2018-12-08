@@ -14,12 +14,17 @@ def show_menu():
         for stored in shows:
             print stored
 
-
-        select.append(raw_input('Select a number or "e" to continue: '))
+        select.append(raw_input('\nSelect a command number \nPress "c" to Clear selection \nPress "e" to Execute \nPress "b" to go back\n   Please enter your selection:  '))
         if select[-1].isdigit() and int(select[-1]) < len(shows_menu):
             #print select[-1] + " " + str(len(shows_menu))
             shows.append(shows_menu[int(select[-1])])
-        elif select[-1]=='e':
+        elif select[-1].lower() == 'e':
+            break
+        elif select[-1].lower() == 'c':
+            shows=[]
+            select=[]
+        elif select[-1].lower() == 'b':
+            shows=[]
             break
 
 
