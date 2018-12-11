@@ -1,11 +1,27 @@
 import config
-import os
+import os,socket
+import time
+
 
 def cls():
     os.system('cls' if os.name=='nt' else 'clear')
 
 
-def ipsec():
+def check_connection(host):
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.settimeout(2)
+    port = int(host['port'])
+    try:
+        s.connect((host['ip'],port))
+        #time.sleep(1)
+        s.close()
+        return ('\x1b[6;30;42m' + 'ZING!' + '\x1b[0m')
+    except socket.error , exc:
+        s.close()
+        return ('\x1b[1;31;40m'+ str(exc) +'\x1b[0m')
+
+
+def ipsec(devices_connect):
 
     devices = [
         {
@@ -24,9 +40,12 @@ def ipsec():
         },
     ]
     side_a=devices[0]
+    side_a_connect=devices_connect[0]
     side_b=devices[1]
+    side_b_connect=devices_connect[1]
     spaces = 50
     table=['WAN Interface: ','IP Address[IP/DHCP]: ','Mode[NAT/Public/P2P]: ','Role[Hub/Spoke]:']
+
 
     while True:
         cls()
@@ -35,6 +54,15 @@ def ipsec():
         print table[1] + side_a['ip'] + ' '*int(spaces-len(side_a['ip'])-len(table[1])) + table[1]+side_b['ip']
         print table[2] + side_a['mode'] + ' '*int(spaces-len(side_a['mode'])-len(table[2])) + table[2]+side_b['mode']
         print table[3] + side_a['role'] + ' '*int(spaces-len(side_a['role'])-len(table[3])) + table[3]+side_b['role']
+
+
+        print '='*30 +"CONNECTION DETAILS" + '='*30
+        print "Mgmt IP:" + side_a_connect['ip'] + ' '* int(spaces-len(side_a_connect['ip'])-len('Mgmt IP:'))+ "Mgmt IP:"+side_b_connect['ip']
+        print "Status: " + check_connection(side_a_connect) + ' '* 37 + "Status: " + check_connection(side_b_connect)
+
+
+
+
         input = raw_input("\nPress M to Modify\nPress E to execute\nPress B to go back\n  Please enter your selection: ")
         if input.lower() == 'e':
             while True:

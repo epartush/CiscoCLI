@@ -41,7 +41,8 @@ while True:
                 raw_input("\nPress any key..")
                 break
             elif device_input =='2':
-                num=raw_input("Enter device ID to edit")
+                dev.printdevs(devices)
+                num=raw_input("Enter device ID to edit[0-"+str(len(devices)-1)+ "]: ")
                 if num.isdigit() == True and int(num) < len(devices):
                     dev.editdev(devices,num)
                 break
@@ -100,7 +101,7 @@ while True:
     elif input =='3':
         scenrio_menu=raw_input("1. IPSec WAN link\n2. MACSec WAN link")
         if scenrio_menu.isdigit() and scenrio_menu=='1':
-            scenario.ipsec()
+            scenario.ipsec(devices)
         elif scenrio_menu.isdigit() and scenrio_menu =='2':
             print "MACSEEEECCC"
 
