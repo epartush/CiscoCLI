@@ -119,7 +119,7 @@ def ipsec(devices_connect):
         break
     else:
         break'''
-
+#s
 def execute(side_a,side_b):
     side_a['dest']=side_b['ip']
     side_a['tunnel']='10.10.10.1'

@@ -4,7 +4,7 @@ import re
 # core['ip'] = "10.56.100."+str(2)
 
 # print core['ip']
-
+#s
 # ######  -l list #########
 def devlist(device,num):
     print "\nDevice #" + str(num) + ":"

@@ -13,7 +13,7 @@ def show_menu():
         print '======= Selected ======'
         for stored in shows:
             print stored
-
+#s
         select.append(raw_input('\nSelect a command number \nPress "c" to Clear selection \nPress "e" to Execute \nPress "b" to go back\n   Please enter your selection:  '))
         if select[-1].isdigit() and int(select[-1]) < len(shows_menu):
             #print select[-1] + " " + str(len(shows_menu))

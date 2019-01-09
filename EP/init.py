@@ -131,7 +131,7 @@ while True:
             raw_input("Press any key to continue..")
     elif input== 'e':
         break
-    elif input =='t':
+    elif input == 't':
 
         while True:
             ip = raw_input("Enter IP address:")
