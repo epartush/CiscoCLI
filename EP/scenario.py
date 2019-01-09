@@ -6,7 +6,7 @@ import time
 def cls():
     os.system('cls' if os.name=='nt' else 'clear')
 
-
+#conn
 def check_connection(host):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.settimeout(2)
