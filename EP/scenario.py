@@ -20,7 +20,7 @@ def check_connection(host):
         s.close()
         return ('\x1b[1;31;40m'+ str(exc) +'\x1b[0m')
 
-
+#a
 def ipsec(devices_connect):
 
     devices = [
