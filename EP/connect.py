@@ -90,7 +90,7 @@ def devcon(commands,devices,device,isconf):
         s.close()
         return 'none'
 
-
+ 
 
 
 def writetofile (output,filename):

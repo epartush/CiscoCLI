@@ -60,3 +60,5 @@ BUGS
 [FIXED]if output folder doesnt exists, the program fail.
         we should create the folder
 [FIXED]select a device out of index will crash the program  - when on menu 10 - connect
+
+s

@@ -4,7 +4,7 @@ import re
 # core['ip'] = "10.56.100."+str(2)
 
 # print core['ip']
-
+#s
 # ######  -l list #########
 def devlist(device,num):
     print "\nDevice #" + str(num) + ":"
@@ -19,7 +19,7 @@ def devlist(device,num):
       #  print device.index(arg)
 
 def printdevs(devices):
-    print "\n\n ###printing Device List now ###"
+    print "\n\n  Device List\n  -----------"
     for device in devices:
         devlist(device,devices.index(device))
 
@@ -93,7 +93,7 @@ def editdev(mydevices,num):
             print "Use IPv4 Address format: x.x.x.x"
 '''
     while True:
-        dev['ip'] = raw_input("Enter Management IPv4 address: ") or dev['ip']
+        dev['ip'] = raw_input("Enter Management IPv4 address[" +dev['ip']+ "]:") or dev['ip']
         if re.match(r'^((\d{1,2}|1\d{2}|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d{2}|2[0-4]\d|25[0-5])$', dev['ip']):
             break
         else:
