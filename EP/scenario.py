@@ -20,31 +20,57 @@ def check_connection(host):
         s.close()
         return ('\x1b[1;31;40m'+ str(exc) +'\x1b[0m')
 
-#a
-def ipsec(devices_connect):
 
-    devices = [
-        {
-            'int': 'gi0/1',
-            'ip': '10.0.0.1',
-            'mode': 'NAT',
-            'role': 'Spoke'
-        },
 
-        {
+def wan(devices_connect,type):
 
-            'int': ' ',
-            'ip': '101.1.2.3',
-            'mode': 'P2P',
-            'role': 'Spoke'
-        },
-    ]
+    if type == "ipsec":
+        devices = [
+            {
+                'int': 'gi0/1',
+                'ip': '10.0.0.1',
+                'mode': 'NAT',
+                'role': 'Spoke'
+            },
+
+            {
+
+                'int': ' ',
+                'ip': '101.1.2.3',
+                'mode': 'P2P',
+                'role': 'Spoke'
+            },
+        ]
+        table=['WAN Interface: ','IP Address[IP/DHCP]: ','Mode[NAT/Public/P2P]: ','Role[Hub/Spoke]:']
+        print "IPSECCCC"
+    elif type == "macsec":
+        devices = [
+            {
+                'int': 'gi0/1',
+                'ip': '10.0.0.1',
+                'key': '706872617365',
+                'mac': ' '
+            },
+
+            {
+
+                'int': 'gi0/1',
+                'ip': '10.0.0.2',
+                'key': '706872617365',
+                'mac': 'bbaa.ccdd.eeff'
+            },
+        ]
+        print "MACSECCCC"
+        table=['WAN Interface: ','IP Address[IP/DHCP]: ','Key(ascii):','Mac Address:']
+
+
+
     side_a=devices[0]
     side_a_connect=devices_connect[0]
     side_b=devices[1]
     side_b_connect=devices_connect[1]
     spaces = 50
-    table=['WAN Interface: ','IP Address[IP/DHCP]: ','Mode[NAT/Public/P2P]: ','Role[Hub/Spoke]:']
+
 
 
     while True:
@@ -52,8 +78,12 @@ def ipsec(devices_connect):
         print "Side A"+' '*int(spaces-len('Side A')) +"Side B"+'\n'+'------'+' '*int(spaces-len('Side A'))+'------'
         print table[0] + side_a['int'] + ' '*int(spaces-len(side_a['int'])-len(table[0])) + table[0]+side_b['int']
         print table[1] + side_a['ip'] + ' '*int(spaces-len(side_a['ip'])-len(table[1])) + table[1]+side_b['ip']
-        print table[2] + side_a['mode'] + ' '*int(spaces-len(side_a['mode'])-len(table[2])) + table[2]+side_b['mode']
-        print table[3] + side_a['role'] + ' '*int(spaces-len(side_a['role'])-len(table[3])) + table[3]+side_b['role']
+        if type == 'ipsec':
+            print table[2] + side_a['mode'] + ' '*int(spaces-len(side_a['mode'])-len(table[2])) + table[2]+side_b['mode']
+            print table[3] + side_a['role'] + ' '*int(spaces-len(side_a['role'])-len(table[3])) + table[3]+side_b['role']
+        if type == 'macsec':
+            print table[3] + side_a['mac'] + ' '*int(spaces-len(side_a['mac'])-len(table[3])) + table[3]+side_b['mac']
+            print 20*' ' + table[2] + side_a['key'].decode('hex')
 
 
         print '='*30 +"CONNECTION DETAILS" + '='*30
@@ -72,11 +102,27 @@ def ipsec(devices_connect):
                         if device[key] == ' ':
                             raw_input("All values should be entered before execution!")
                             value=1
+                if type == 'macsec':
+                    if side_b['key'] or side_a['key'] == 'phrase'.encode('hex'):
+                        while True:
+
+                            #---> add interger for key , and check hex digits with encode and check length  "asdasdas".encode('hex')
+                            key = raw_input("Please enter a phrase that will be translated to hex digits:")
+                            if len(key.encode('hex')) == 64:
+                                print "your key in hex is " + key.encode('hex')
+                                side_a['key']=key.encode('hex')
+                                side_b['key']=key.encode('hex')
+                                break
+                            elif len(key.encode('hex')) < 64:
+                                print "Add more characters to the phrase"
+                            elif len (key.encode('hex')) > 64:
+                                print "Delete some charachters from the phrase"
+
 
                 if value==1:
                     break
                 else:
-                    side_a_config,side_b_config=execute(side_a,side_b)
+                    side_a_config,side_b_config=execute(side_a,side_b,type)
                     while True:
                         savetofile= raw_input("Save to file? [Y/N]")
                         if savetofile.capitalize()=='Y':
@@ -94,10 +140,10 @@ def ipsec(devices_connect):
                 num = raw_input("Select Device:[A/B]")
 
                 if num == 'a':
-                    editdev(devices,'0')
+                    editdev(devices,'0',type)
                     break
                 elif num.lower() == 'b':
-                    editdev(devices,'1')
+                    editdev(devices,'1',type)
                     break
                 elif num == 'e':
                     break
@@ -120,7 +166,7 @@ def ipsec(devices_connect):
     else:
         break'''
 #s
-def execute(side_a,side_b):
+def execute(side_a,side_b,type):
     side_a['dest']=side_b['ip']
     side_a['tunnel']='10.10.10.1'
     side_b['dest']=side_a['ip']
@@ -155,7 +201,8 @@ def execute(side_a,side_b):
     raw_input("press any key..")
 
 
-def editdev(mydevices,num):
+def editdev(mydevices,num,type):
+    import re
     dev=mydevices[int(num)]
     inputok = 0
     #dev['name'] = raw_input("Please enter the hostname[" +dev['name']+ "]:") or dev['name']
@@ -184,9 +231,21 @@ def editdev(mydevices,num):
     #    dev['port'] = raw_input("Please enter port number [" +dev['port']+ "]:") or dev['port']
     #    if dev['port'].isdigit() == True and int(dev['port']) < 65532:
     #        break
+    if type =='ipsec':
 
-    while True:
-        dev['mode'] = raw_input("Mode- Behind NAT, Public, P2P [" +dev['mode']+ "]:") or dev['mode']
-        if dev['mode'].lower() == 'p2p' or dev['mode'].lower() == 'nat' or dev['mode'].lower() == 'public':
-            break
-    dev['role']=raw_input("Role Hub or Spoke [" +dev['role']+ "]:") or dev['role']
+        while True:
+                dev['mode'] = raw_input("Mode- Behind NAT, Public, P2P [" +dev['mode']+ "]:") or dev['mode']
+                if dev['mode'].lower() == 'p2p' or dev['mode'].lower() == 'nat' or dev['mode'].lower() == 'public':
+                    break
+        dev['role']=raw_input("Role Hub or Spoke [" +dev['role']+ "]:") or dev['role']
+
+    if type == 'macsec':
+        while True:
+            dev['mac'] = raw_input("Mac address format xxxx.xxxx.xxxx [" +dev['mac']+ "]:") or dev['mac']
+            #if dev['mac'].count('.') == 2:
+             #   break
+            if re.match(r'^([0-9a-fA-F]{4}\.){2}([0-9a-fA-F]{4})?$', dev['mac']):
+                break
+
+            #if re.match(r'^(([a-fA-F0-9]{2}-){5}[a-fA-F0-9]{2}|([a-fA-F0-9]{2}:){5}[a-fA-F0-9]{2}|([0-9A-Fa-f]{4}\.){2}[0-9A-Fa-f]{4})?$', dev['mac']):
+             #   break
