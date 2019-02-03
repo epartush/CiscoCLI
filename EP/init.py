@@ -99,11 +99,11 @@ while True:
                 break
         raw_input("\nPress and key..")
     elif input =='3':
-        scenrio_menu=raw_input("1. IPSec WAN link\n2. MACSec WAN link")
+        scenrio_menu=raw_input("1. IPSec WAN link\n2. MACSec WAN link\n Please enter your choice..")
         if scenrio_menu.isdigit() and scenrio_menu=='1':
-            scenario.ipsec(devices)
+            scenario.wan(devices,"ipsec")
         elif scenrio_menu.isdigit() and scenrio_menu =='2':
-            print "MACSEEEECCC"
+            scenario.wan(devices,"macsec")
 
         raw_input("\nPress any key..")
     elif input == '10':

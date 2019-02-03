@@ -2,7 +2,7 @@
 devices = [
      {
         'name' : 'iosv-1',
-        'ip' : '10.0.0.151',
+        'ip' : '10.0.0.174',
         'username' : 'cisco',
         'password' : 'cisco',
         'enable' : ' ',
@@ -11,7 +11,7 @@ devices = [
 
      {
         'name' : 'iosv-2',
-        'ip' : '10.0.0.150',
+        'ip' : '10.0.0.175',
         'username' : 'cisco',
         'password' : 'cisco',
         'enable' : ' ',

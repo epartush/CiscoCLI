@@ -33,26 +33,8 @@ def printdevs(devices):
 def adddev(mydevices):
     mydevices.append({'name' : ' ','ip' : '','username' : '','password' : '','enable' : '','port' :  '',})
     dev=mydevices[-1]
-    inputok = 0
     dev['name'] = raw_input("Please enter the hostname:")
-    # can be removed if
-    '''while inputok != 4:
-        inputok = 0
-        dev['ip'] = raw_input("Enter IPv4 for Telnet: ")
-        if len(dev['ip'].split(".")) == 4:
-            for octet in dev['ip'].split("."):
-                if octet.isdigit() == True:
-                    if octet != '' and int(octet) > 0 and int(octet) <= 255:
-                        inputok += 1
-                    else:
-                        print str(octet) + " is not a number between 1 - 255"
-                        inputok = 0
-                        break
-                else:
-                    print "Numbers only"
-        else:
-            print "Use IPv4 Address format: x.x.x.x"
-    '''
+
     while True:
         dev['ip'] = raw_input("Enter Management IPv4 address: ")
         if re.match(r'^((\d{1,2}|1\d{2}|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d{2}|2[0-4]\d|25[0-5])$', dev['ip']):
@@ -71,27 +53,8 @@ def adddev(mydevices):
 
 def editdev(mydevices,num):
     dev=mydevices[int(num)]
-    inputok = 0
     dev['name'] = raw_input("Please enter the hostname[" +dev['name']+ "]:") or dev['name']
-    '''while inputok != 4:
-        inputok = 0
-        dev['ip'] = raw_input("Enter IPv4 for Telnet[" +dev['ip']+ "]:") or dev['ip']
 
-        if len(dev['ip'].split(".")) == 4:
-            #print dev['ip'].split(".")
-            for octet in dev['ip'].split("."):
-                if octet.isdigit() == True:
-                    if octet != '' and int(octet) >= 0 and int(octet) <= 255:
-                        inputok += 1
-                    else:
-                        print str(octet) + " is not a number between 1 - 255"
-                        inputok = 0
-                        break
-                else:
-                    print "Numbers only"
-        else:
-            print "Use IPv4 Address format: x.x.x.x"
-'''
     while True:
         dev['ip'] = raw_input("Enter Management IPv4 address[" +dev['ip']+ "]:") or dev['ip']
         if re.match(r'^((\d{1,2}|1\d{2}|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d{2}|2[0-4]\d|25[0-5])$', dev['ip']):
