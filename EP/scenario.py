@@ -1,6 +1,9 @@
 import config
 import os,socket
 import time
+from curses import wrapper
+import keygen
+
 
 
 def cls():
@@ -61,7 +64,7 @@ def wan(devices_connect,type):
             },
         ]
         print "MACSECCCC"
-        table=['WAN Interface: ','IP Address[IP/DHCP]: ','Key(ascii):','Mac Address:']
+        table=['WAN Interface: ','IP Address[IP/DHCP]: ','Key(ascii):','Mac Address:','Key(hex):']
 
 
 
@@ -84,6 +87,7 @@ def wan(devices_connect,type):
         if type == 'macsec':
             print table[3] + side_a['mac'] + ' '*int(spaces-len(side_a['mac'])-len(table[3])) + table[3]+side_b['mac']
             print 20*' ' + table[2] + side_a['key'].decode('hex')
+            print 20*' ' + table[4] + side_a['key']
 
 
         print '='*30 +"CONNECTION DETAILS" + '='*30
@@ -93,7 +97,25 @@ def wan(devices_connect,type):
 
 
 
-        input = raw_input("\nPress M to Modify\nPress E to execute\nPress B to go back\n  Please enter your selection: ")
+        input = raw_input("\nPress M to Modify\nPress 'G' to Generate a key\nPress E to execute\nPress B to go back\n  Please enter your selection: ")
+
+        if input.lower() == 'g':
+            if type == 'macsec':
+                #if len(side_b['key']) != 64:
+                    #while True:
+
+                    #---> add interger for key , and check hex digits with encode and check length  "asdasdas".encode('hex')
+                  #key = raw_input("Please enter a phrase that will be translated to hex digits:")
+                key=wrapper(keygen.check)
+                print "Your key is " + key
+                print "Your phrase is " + key.decode('hex')
+                    #if len(key.encode('hex')) == 64:
+                    #       print "your key in hex is " + key.encode('hex')
+                raw_input("Press any key..")
+                side_a['key']=key
+                side_b['key']=key
+            #    break
+
         if input.lower() == 'e':
             while True:
                 value =0
@@ -102,21 +124,6 @@ def wan(devices_connect,type):
                         if device[key] == ' ':
                             raw_input("All values should be entered before execution!")
                             value=1
-                if type == 'macsec':
-                    if side_b['key'] or side_a['key'] == 'phrase'.encode('hex'):
-                        while True:
-
-                            #---> add interger for key , and check hex digits with encode and check length  "asdasdas".encode('hex')
-                            key = raw_input("Please enter a phrase that will be translated to hex digits:")
-                            if len(key.encode('hex')) == 64:
-                                print "your key in hex is " + key.encode('hex')
-                                side_a['key']=key.encode('hex')
-                                side_b['key']=key.encode('hex')
-                                break
-                            elif len(key.encode('hex')) < 64:
-                                print "Add more characters to the phrase"
-                            elif len (key.encode('hex')) > 64:
-                                print "Delete some charachters from the phrase"
 
 
                 if value==1:
