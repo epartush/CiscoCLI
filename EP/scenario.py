@@ -51,7 +51,7 @@ def wan(devices_connect,type):
             {
                 'int': 'gi0/1',
                 'ip': '10.0.0.1',
-                'key': '706872617365',
+                'key': '',
                 'mac': ' '
             },
 
@@ -59,7 +59,7 @@ def wan(devices_connect,type):
 
                 'int': 'gi0/1',
                 'ip': '10.0.0.2',
-                'key': '706872617365',
+                'key': '',
                 'mac': 'bbaa.ccdd.eeff'
             },
         ]
@@ -128,7 +128,7 @@ def wan(devices_connect,type):
 
                 if value==1:
                     break
-                else:
+                elif len(side_a['key']) > 2 :
                     side_a_config,side_b_config=execute(side_a,side_b,type)
                     while True:
                         savetofile= raw_input("Save to file? [Y/N]")
@@ -141,6 +141,9 @@ def wan(devices_connect,type):
 
                         raw_input("Press any key to continue..")
                         break
+                    break
+                elif len(side_a['key']) <= 2:
+                    raw_input("Generate a key..")
                     break
         elif input.lower() == 'm':
             while True:
@@ -174,25 +177,29 @@ def wan(devices_connect,type):
         break'''
 #s
 def execute(side_a,side_b,type):
-    side_a['dest']=side_b['ip']
-    side_a['tunnel']='10.10.10.1'
-    side_b['dest']=side_a['ip']
-    side_b['tunnel']='10.10.10.2'
-    side_a_conf=[]
-    side_b_conf=[]
-    if side_a['mode'].lower() == 'nat':
-        side_a_conf = config.load_config('templates/IPSecOverNat',side_a)
-    elif side_a['mode'].lower() == 'p2p':
-        side_a_conf = config.load_config('templates/IPSecOverNat',side_a)
-    elif side_a['mode'].lower() == 'public':
-        side_a_conf = config.load_config('templates/IPSecOverNat',side_a)
+    if type == 'ipsec':
+        side_a['dest']=side_b['ip']
+        side_a['tunnel']='10.10.10.1'
+        side_b['dest']=side_a['ip']
+        side_b['tunnel']='10.10.10.2'
+        side_a_conf=[]
+        side_b_conf=[]
+        if side_a['mode'].lower() == 'nat':
+            side_a_conf = config.load_config('templates/IPSecOverNat',side_a)
+        elif side_a['mode'].lower() == 'p2p':
+            side_a_conf = config.load_config('templates/IPSecOverNat',side_a)
+        elif side_a['mode'].lower() == 'public':
+            side_a_conf = config.load_config('templates/IPSecOverNat',side_a)
 
-    if side_b['mode'].lower() == 'p2p':
-        side_b_conf = config.load_config('templates/IPSec',side_b)
-    elif side_b['mode'].lower() == 'nat':
-        side_b_conf = config.load_config('templates/IPSecOverNat',side_b)
-    elif side_a['mode'].lower() == 'public':
-        side_b_conf = config.load_config('templates/IPSecOverNat',side_b)
+        if side_b['mode'].lower() == 'p2p':
+            side_b_conf = config.load_config('templates/IPSec',side_b)
+        elif side_b['mode'].lower() == 'nat':
+            side_b_conf = config.load_config('templates/IPSecOverNat',side_b)
+        elif side_a['mode'].lower() == 'public':
+            side_b_conf = config.load_config('templates/IPSecOverNat',side_b)
+    if type =='macsec':
+        side_a_conf=['asdkjashdkahsd','asdjalsjdjasdjasd','nsdfasdjlaksjd','najasdjasd']
+        side_b_conf=['Guacamolle','thats the guaccamole','asd']
 
     if len(side_a_conf) > len(side_b_conf):
         for i in range(0,len(side_a_conf)-len(side_b_conf),1):
