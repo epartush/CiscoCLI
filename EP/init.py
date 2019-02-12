@@ -27,13 +27,14 @@ def cls():
 '''Menu '''
 while True:
     cls()
-    print "\n ##### C17RU5 #####"
-    print" 1.  Devices Menu\n 2.  Config Menu \n 3.  Scenarios \n 10. Pull info from device \n e.  Exit"
+    print "\n ##### ZING #####"
+    print" 1.  Devices Menu\n 2.  Config Templates \n 3. WAN Builder \n 10. Pull info \n q.  Quit"
     input=raw_input("Select: ")
 
     if input == '1':
         while True:
-            print " 1. Device list \n 2. Edit Device \n 3. Add device\nb. Back"
+            cls()
+            print "\n#### Devices #####\n 1. Device list \n 2. Edit Device \n 3. Add device\nb. Back"
             device_input = raw_input("Select: ")
             if device_input == '3':
                 dev.adddev(devices)
@@ -45,7 +46,7 @@ while True:
                 num=raw_input("Enter device ID to edit[0-"+str(len(devices)-1)+ "]: ")
                 if num.isdigit() == True and int(num) < len(devices):
                     dev.editdev(devices,num)
-                break
+                    break
             elif device_input == 'b':
                 break
             elif device_input == '1':
@@ -99,13 +100,17 @@ while True:
                 break
         raw_input("\nPress and key..")
     elif input =='3':
-        scenrio_menu=raw_input("1. IPSec WAN link\n2. MACSec WAN link\n Please enter your choice..")
-        if scenrio_menu.isdigit() and scenrio_menu=='1':
-            scenario.wan(devices,"ipsec")
-        elif scenrio_menu.isdigit() and scenrio_menu =='2':
-            scenario.wan(devices,"macsec")
+        while True:
+            cls()
+            scenrio_menu=raw_input("\n##### Builder #####\n1. IPSec WAN link\n2. MACSec WAN link\nb. Back\n Please enter your choice..")
+            if scenrio_menu.isdigit() and scenrio_menu=='1':
+                scenario.wan(devices,"ipsec")
+            elif scenrio_menu.isdigit() and scenrio_menu =='2':
+                scenario.wan(devices,"macsec")
+            elif scenrio_menu.lower() == 'b':
+                break
 
-        raw_input("\nPress any key..")
+        #raw_input("\nPress any key..")
     elif input == '10':
         shows = show_commands.show_menu()
         if len(shows) != 0:
@@ -129,7 +134,7 @@ while True:
                         #raw_input("Press any key to continue..")
                         break
             raw_input("Press any key to continue..")
-    elif input== 'e':
+    elif input== 'q':
         break
     elif input == 't':
 

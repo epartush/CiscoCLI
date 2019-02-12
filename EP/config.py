@@ -14,12 +14,13 @@ def load_config(path,attr):
         for line in f:
             line = line.strip('\n')
             template.append(line.split(' '))
-    if raw_input("Print template? [Y/N]").lower() == 'y':
-        print " ## Template ##"
-        for line in template:
-            print ' '.join(line)
+    if attr == 0:
+        if raw_input("Print template? [Y/N]").lower() == 'y':
+            print " ## Template ##"
+            for line in template:
+                print ' '.join(line)
 
-    raw_input("\nPress any key to rebuild.. \n")
+        raw_input("\nPress any key to rebuild.. \n")
     for line in template:
         if attr == 0:
             print ' '.join(line)

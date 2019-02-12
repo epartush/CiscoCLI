@@ -33,7 +33,8 @@ def wan(devices_connect,type):
                 'int': 'gi0/1',
                 'ip': '10.0.0.1',
                 'mode': 'NAT',
-                'role': 'Spoke'
+                'role': 'Spoke',
+                'key' : 'ipsec',
             },
 
             {
@@ -41,10 +42,12 @@ def wan(devices_connect,type):
                 'int': ' ',
                 'ip': '101.1.2.3',
                 'mode': 'P2P',
-                'role': 'Spoke'
+                'role': 'Spoke',
+                'key' : 'ipsec',
             },
         ]
-        table=['WAN Interface: ','IP Address[IP/DHCP]: ','Mode[NAT/Public/P2P]: ','Role[Hub/Spoke]:']
+        #table=['WAN Interface: ','IP Address[IP/DHCP]: ','Mode[NAT/Public/P2P]: ','Role[Hub/Spoke]: ','Key: ']
+        table={'int':'WAN Interface:','ip':'IP Address[IP/DHCP]:','mode':'Mode[NAT/Public/P2P]:','role':'Role[Hub/Spoke]:','key':'Key:'}
         print "IPSECCCC"
     elif type == "macsec":
         devices = [
@@ -64,7 +67,8 @@ def wan(devices_connect,type):
             },
         ]
         print "MACSECCCC"
-        table=['WAN Interface: ','IP Address[IP/DHCP]: ','Key(ascii):','Mac Address:','Key(hex):']
+        #table=['WAN Interface: ','IP Address[IP/DHCP]: ','Key(ascii):','Mac Address:','Key(hex):']
+        table={'int' : 'WAN Interface:','ip':'IP Address[IP/DHCP]:','mac':'Mac Address:','key':'Key:'}
 
 
 
@@ -73,38 +77,46 @@ def wan(devices_connect,type):
     side_b=devices[1]
     side_b_connect=devices_connect[1]
     spaces = 50
-
+    c=0
 
 
     while True:
         cls()
         print "Side A"+' '*int(spaces-len('Side A')) +"Side B"+'\n'+'------'+' '*int(spaces-len('Side A'))+'------'
-        print table[0] + side_a['int'] + ' '*int(spaces-len(side_a['int'])-len(table[0])) + table[0]+side_b['int']
-        print table[1] + side_a['ip'] + ' '*int(spaces-len(side_a['ip'])-len(table[1])) + table[1]+side_b['ip']
+        print table['int'] + side_a['int'] + ' '*int(spaces-len(side_a['int'])-len(table['int'])) + table['int']+side_b['int']
+        print table['ip'] + side_a['ip'] + ' '*int(spaces-len(side_a['ip'])-len(table['ip'])) + table['ip']+side_b['ip']
         if type == 'ipsec':
-            print table[2] + side_a['mode'] + ' '*int(spaces-len(side_a['mode'])-len(table[2])) + table[2]+side_b['mode']
-            print table[3] + side_a['role'] + ' '*int(spaces-len(side_a['role'])-len(table[3])) + table[3]+side_b['role']
+            print table['mode'] + side_a['mode'] + ' '*int(spaces-len(side_a['mode'])-len(table['mode'])) + table['mode']+side_b['mode']
+            print table['role'] + side_a['role'] + ' '*int(spaces-len(side_a['role'])-len(table['role'])) + table['role']+side_b['role']
+            #print 20*' ' + table[2] + side_a['key'].decode('hex')
+            print 20*' ' + table['key'] + side_a['key']
         if type == 'macsec':
-            print table[3] + side_a['mac'] + ' '*int(spaces-len(side_a['mac'])-len(table[3])) + table[3]+side_b['mac']
-            print 20*' ' + table[2] + side_a['key'].decode('hex')
-            print 20*' ' + table[4] + side_a['key']
+            print table['mac'] + side_a['mac'] + ' '*int(spaces-len(side_a['mac'])-len(table['mac'])) + table['mac']+side_b['mac']
+            print 20*' ' + table['key'] + side_a['key'].decode('hex')
+            print 20*' ' + table['key'] + side_a['key']
 
 
         print '='*30 +"CONNECTION DETAILS" + '='*30
         print "Mgmt IP:" + side_a_connect['ip'] + ' '* int(spaces-len(side_a_connect['ip'])-len('Mgmt IP:'))+ "Mgmt IP:"+side_b_connect['ip']
-        print "Status: " + check_connection(side_a_connect) + ' '* 37 + "Status: " + check_connection(side_b_connect)
+        if c==1:
+            print "Status: " + check_connection(side_a_connect) + ' '* 37 + "Status: " + check_connection(side_b_connect)
+        if c==0:
+            print "Status check: OFF"
 
 
 
-
-        input = raw_input("\nPress M to Modify\nPress 'G' to Generate a key\nPress E to execute\nPress B to go back\n  Please enter your selection: ")
-
+        input = raw_input("\nPress C to turn on/off status Check\nPress M to Modify\nPress G to Generate a key\nPress E to execute\nPress B to go back\n  Please enter your selection: ")
+        if input.lower() == 'c':
+            if c==1:
+                c=0
+            elif c==0:
+                c=1
         if input.lower() == 'g':
             if type == 'macsec':
                 #if len(side_b['key']) != 64:
                     #while True:
 
-                    #---> add interger for key , and check hex digits with encode and check length  "asdasdas".encode('hex')
+                  #---> add interger for key , and check hex digits with encode and check length  "asdasdas".encode('hex')
                   #key = raw_input("Please enter a phrase that will be translated to hex digits:")
                 key=wrapper(keygen.check)
                 print "Your key is " + key
@@ -122,7 +134,8 @@ def wan(devices_connect,type):
                 for device in devices:
                     for key in device:
                         if device[key] == ' ':
-                            raw_input("All values should be entered before execution!")
+                            #raw_input("All values should be entered before execution!")
+                            raw_input("Enter a value for " + table[key][:-1])
                             value=1
 
 
@@ -133,8 +146,8 @@ def wan(devices_connect,type):
                     while True:
                         savetofile= raw_input("Save to file? [Y/N]")
                         if savetofile.capitalize()=='Y':
-                            filenamea = raw_input("Enter filename for SideA:")
-                            filenameb = raw_input("Enter filename for SideB:")
+                            filenamea = "A_"+raw_input("Enter filename for SideA:")
+                            filenameb = "B_"+raw_input("Enter filename for SideB:")
                             config.writetofile(side_a_config,filenamea)
                             config.writetofile(side_b_config,filenameb)
                             break
