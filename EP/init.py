@@ -28,7 +28,7 @@ def cls():
 while True:
     cls()
     print "\n ##### ZING #####"
-    print" 1.  Devices Menu\n 2.  Config Templates \n 3. WAN Builder \n 10. Pull info \n q.  Quit"
+    print" 1.  Devices Menu\n 2.  Config Templates \n 3.  WAN Builder \n 10. Pull info \n q.  Quit"
     input=raw_input("Select: ")
 
     if input == '1':
