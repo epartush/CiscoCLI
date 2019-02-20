@@ -31,9 +31,9 @@ def load_config(path,attr):
                         #print attr[word[1:].lower()]
                         line[line.index(word)] = attr[word[1:].lower()]
                     else:
-                        print "!!Missing Info!!!"
+                        print "error: Template and device key mismatch, please check"
                 elif word[0] == '%':
-                    print "Enter Value for " + word[1:]
+                    print "Enter Value for " + word[1:] +":"
                     line[line.index(word)] = raw_input()
         new_conf.append(' '.join(line))
     return new_conf

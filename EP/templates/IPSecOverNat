@@ -2,6 +2,9 @@ crypto ikev2 proposal IKEv2Proposal
 group 14
 
 crypto ikev2 keyring IKEv2Keyring
+peer %peer
+local key %lkey
+remote key %rkey
 
 crypto ikev2 profile IKEv2Profile
 
