@@ -32,17 +32,17 @@ Get show interface and select one
 
 Version 2.0
 GUI - Kivy - downloaded at the windows station
-make the ip check input validation function better (while True, and check each octet)  right now its very stupid.
+[DONE]make the ip check input validation function better (while True, and check each octet)  right now its very stupid.
 
 
- TODO P1
+ TODO P
 [DONE] connection function
 [DONE] commands function
 [DONE] write to file function
 [Done] IN PARALLEL start on creating configuration files with variables
 [DONE] procces bar or status
 
-on menu 3 - need to make it as a function on a different file
+[progress] on menu 3 - need to make it as a function on a different file
     use the windows station because of indention
     we should have the ability to go back in that menu
 
@@ -53,11 +53,14 @@ on menu 3 - need to make it as a function on a different file
 [Done] error management for device connection - maybe using "TRY" function
 add ability to configure the device
 
-add "back" on menus
+[DONE]add "back" on menus
 
 BUGS
 3 config menu --> IPSec -> no provision configs to device --> no provision config to device  (twice)
 [FIXED]if output folder doesnt exists, the program fail.
         we should create the folder
 [FIXED]select a device out of index will crash the program  - when on menu 10 - connect
+
+
+--->>> * need to fix the config functions.   scenario and config not working toghether right now !!!
 
