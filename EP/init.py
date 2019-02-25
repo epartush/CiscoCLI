@@ -29,12 +29,12 @@ while True:
     cls()
     print "\n ##### ZING #####"
     print" 1.  Devices Menu\n 2.  Config Templates \n 3.  WAN Builder \n 10. Pull info \n q.  Quit"
-    input=raw_input("Select: ")
+    input=raw_input("\nSelect: ")
 
     if input == '1':
         while True:
             cls()
-            print "\n#### Devices #####\n 1. Device list \n 2. Edit Device \n 3. Add device\nb. Back"
+            print "\n ##### Devices #####\n 1.  Device list \n 2.  Edit Device \n 3.  Add device\n b.  Back"
             device_input = raw_input("Select: ")
             if device_input == '3':
                 dev.adddev(devices)
@@ -55,26 +55,31 @@ while True:
                 raw_input("\nPress any key..")
 
     elif input =='2':
-        onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
-
-        for files in onlyfiles:
-            print str(onlyfiles.index(files))+"." +files
-
-
+        # print files
         while True:
-            file_name= raw_input("Select: ")
-            if file_name.isdigit() == True:
-                if int(file_name) <= onlyfiles.index(files):
-                    file_name = onlyfiles[int(file_name)]
-                    break
-            elif file_name == 'b':
-                print "WE shoudl do something here"
+            cls()
 
-        cls()
-        print "Loading "+ file_name +" Template\n"
-        path = mypath+file_name
-        device_config = config.load_config(path,0)
-        while True:
+            file_name = config.list_template(mypath)
+            if file_name == 'b':
+                break
+            print "Loading "+ file_name +" Template\n"
+            path = mypath+file_name
+            device_config = config.load_config(path,0)
+            raw_input("..........")
+        # print template
+
+        # rebuilld
+            build = raw_input("Press 'y' to build config from template.")
+            if build.lower() == 'y':
+                config.rebuild(0,device_config)
+            raw_input("....... ......")
+        # save to file
+
+
+
+
+
+        '''while True:
             savetofile= raw_input("Save to file? [Y/N]")
             if savetofile.capitalize()=='Y':
                 filename = raw_input("Enter filename:")
@@ -85,7 +90,7 @@ while True:
                     print line
                 raw_input("Press any key to continue..")
                 break
-
+        
         while True:
             if raw_input("Provision configs to device? [Y/N]").capitalize() == 'Y':
                 dev.printdevs(devices)
@@ -98,11 +103,11 @@ while True:
                 break
             else:
                 break
-        raw_input("\nPress and key..")
+            '''
     elif input =='3':
         while True:
             cls()
-            scenrio_menu=raw_input("\n##### Builder #####\n1. IPSec WAN link\n2. MACSec WAN link\nb. Back\n Please enter your choice..")
+            scenrio_menu=raw_input("\n ##### Builder #####\n 1.  IPSec WAN link\n 2.  MACSec WAN link\n b.  Back\n\n Please enter your choice..")
             if scenrio_menu.isdigit() and scenrio_menu=='1':
                 scenario.wan(devices,"ipsec")
             elif scenrio_menu.isdigit() and scenrio_menu =='2':
