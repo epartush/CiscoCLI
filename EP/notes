@@ -35,7 +35,7 @@ GUI - Kivy - downloaded at the windows station
 [DONE]make the ip check input validation function better (while True, and check each octet)  right now its very stupid.
 
 
- TODO P
+ TODO P1
 [DONE] connection function
 [DONE] commands function
 [DONE] write to file function
@@ -64,3 +64,7 @@ BUGS
 
 --->>> * need to fix the config functions.   scenario and config not working toghether right now !!!
 
+added the config function
+need to work with menu
+
+GUI

@@ -71,22 +71,20 @@ while True:
         # rebuilld
             build = raw_input("Press 'y' to build config from template.")
             if build.lower() == 'y':
-                config.rebuild(0,device_config)
+                newconf = config.rebuild(0,device_config)
             raw_input("....... ......")
         # save to file
 
 
 
-
-
-        '''while True:
+        # while True:
             savetofile= raw_input("Save to file? [Y/N]")
             if savetofile.capitalize()=='Y':
                 filename = raw_input("Enter filename:")
-                config.writetofile(device_config,filename)
+                config.writetofile(newconf,filename)
                 break
             if savetofile.capitalize()=='N':
-                for line in device_config:
+                for line in newconf:
                     print line
                 raw_input("Press any key to continue..")
                 break
@@ -103,7 +101,7 @@ while True:
                 break
             else:
                 break
-            '''
+
     elif input =='3':
         while True:
             cls()
