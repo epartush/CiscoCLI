@@ -30,8 +30,7 @@ def load_config(path,attr):
     else:
         print "Using template\n"
 
-    # f = open(path,'r')
-    # f = [line.rstrip('\n') for line in open(path, 'r')]
+
 
     with open (path, 'r') as f:
         for line in f:
