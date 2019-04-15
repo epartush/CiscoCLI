@@ -16,7 +16,7 @@ def check(stdscr):
     phrase=['']
     #curses.newwin(2,50,2,0)
     while 1:
-        stdscr.addstr(0,0,"Press '~' to clear, 'Q' to quit and 'CR' to store.  Enter the phrase: " + phrase[-1])
+        stdscr.addstr(0,0,"Type in your phrase, Press '~' to clear, 'Q' to quit and 'Enter' to store once you got 64. " + phrase[-1])
 
         stdscr.refresh()
         c.append(chr(stdscr.getch()))

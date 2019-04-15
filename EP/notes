@@ -32,7 +32,6 @@ Get show interface and select one
 
 Version 2.0
 GUI - Kivy - downloaded at the windows station
-pyqt5 designer
 make the ip check input validation function better (while True, and check each octet)  right now its very stupid.
 
 

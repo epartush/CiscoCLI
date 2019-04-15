@@ -34,7 +34,8 @@ def wan(devices_connect,type):
                 'ip': '10.0.0.1',
                 'mode': 'NAT',
                 'role': 'Spoke',
-                'key' : 'ipsec',
+                'key' : '',
+                'name' : 'HOME',
             },
 
             {
@@ -43,7 +44,8 @@ def wan(devices_connect,type):
                 'ip': '101.1.2.3',
                 'mode': 'P2P',
                 'role': 'Spoke',
-                'key' : 'ipsec',
+                'key' : '',
+                'name' : 'SITE',
             },
         ]
         #table=['WAN Interface: ','IP Address[IP/DHCP]: ','Mode[NAT/Public/P2P]: ','Role[Hub/Spoke]: ','Key: ']
@@ -55,7 +57,8 @@ def wan(devices_connect,type):
                 'int': 'gi0/1',
                 'ip': '10.0.0.1',
                 'key': '',
-                'mac': ' '
+                'mac': ' ',
+                'name': 'SideA',
             },
 
             {
@@ -63,7 +66,8 @@ def wan(devices_connect,type):
                 'int': 'gi0/1',
                 'ip': '10.0.0.2',
                 'key': '',
-                'mac': 'bbaa.ccdd.eeff'
+                'mac': 'bbaa.ccdd.eeff',
+                'name': 'SideB',
             },
         ]
         print "MACSECCCC"
@@ -88,8 +92,9 @@ def wan(devices_connect,type):
         if type == 'ipsec':
             print table['mode'] + side_a['mode'] + ' '*int(spaces-len(side_a['mode'])-len(table['mode'])) + table['mode']+side_b['mode']
             print table['role'] + side_a['role'] + ' '*int(spaces-len(side_a['role'])-len(table['role'])) + table['role']+side_b['role']
-            #print 20*' ' + table[2] + side_a['key'].decode('hex')
-            print 20*' ' + table['key'] + side_a['key']
+            # print 20*' ' + table[2] + side_a['key'].decode('hex')
+            print table['key'] + side_a['key'] + ' '*int(spaces-len(side_a['key'])-len(table['key'])) + table['key']+side_b['key']
+            # print 20*' ' + table['key'] + side_a['key']
         if type == 'macsec':
             print table['mac'] + side_a['mac'] + ' '*int(spaces-len(side_a['mac'])-len(table['mac'])) + table['mac']+side_b['mac']
             print 20*' ' + table['key'] + side_a['key'].decode('hex')
@@ -127,7 +132,19 @@ def wan(devices_connect,type):
                 side_a['key']=key
                 side_b['key']=key
             #    break
-
+            if type =='ipsec':
+                while True:
+                    k = raw_input("Type 5 or more acsii characters with no spaces:").replace(" ","")
+                    side_a['key']=k.replace('i','!').replace('l','1').replace('e','3').replace('s','$').replace('o','0').replace('b','8').replace('a','@')
+                    side_b['key']=side_a['key'][::-1]
+                    print "\n"+ side_a['key'] + '\n' + side_b['key']
+                    if len(side_a['key']) > 5 and raw_input("save?").lower() == 'y':
+                        side_a['lkey'] = side_a['key']
+                        side_b['rkey'] = side_a['key']
+                        side_b['lkey'] = side_b['key']
+                        side_a['rkey'] = side_b['key']
+                        print "YYYYY"
+                        break
         if input.lower() == 'e':
             while True:
                 value =0
@@ -135,7 +152,7 @@ def wan(devices_connect,type):
                     for key in device:
                         if device[key] == ' ':
                             #raw_input("All values should be entered before execution!")
-                            raw_input("Enter a value for " + table[key][:-1])
+                            raw_input("Enter a value for " + device['name'] + " " + table[key][:-1])
                             value=1
 
 
@@ -196,6 +213,9 @@ def execute(side_a,side_b,type):
         side_a['tunnel']='10.10.10.1'
         side_b['dest']=side_a['ip']
         side_b['tunnel']='10.10.10.2'
+        side_a['peer'] = side_b['name']
+        side_b['peer'] = side_a['name']
+
         side_a_conf=[]
         side_b_conf=[]
         if side_a['mode'].lower() == 'nat':
@@ -212,8 +232,8 @@ def execute(side_a,side_b,type):
         elif side_a['mode'].lower() == 'public':
             side_b_conf = config.load_config('templates/IPSecOverNat',side_b)
     if type =='macsec':
-        side_a_conf=['asdkjashdkahsd','asdjalsjdjasdjasd','nsdfasdjlaksjd','najasdjasd']
-        side_b_conf=['Guacamolle','thats the guaccamole','asd']
+        side_a_conf = config.load_config('templates/MACSecWan',side_a)
+        side_b_conf = config.load_config('templates/MACSecWan',side_b)
 
     if len(side_a_conf) > len(side_b_conf):
         for i in range(0,len(side_a_conf)-len(side_b_conf),1):
