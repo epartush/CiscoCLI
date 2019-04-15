@@ -188,7 +188,8 @@ def wan(devices_connect,type):
         break
     else:
         break'''
-#s
+
+
 def execute(side_a,side_b,type):
     if type == 'ipsec':
         side_a['dest']=side_b['ip']

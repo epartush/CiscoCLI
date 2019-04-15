@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="32e737ac-4cca-44a4-a4dc-aa42ba985ba5" name="Default" comment="notes edited">
-      <change afterPath="$PROJECT_DIR$/EP/show_commands.py" afterDir="false" />
+    <list default="true" id="32e737ac-4cca-44a4-a4dc-aa42ba985ba5" name="Default" comment="notes edited with BUG and a request for removing the timer feature.&#10;&#10;we should use the prompt to prompt method&#10;although it was working good!&#10;&#10;the connect function is almost done, &#10;added the sendc sub function to send the command + &lt;CR&gt; , sleep, and append the output for each command.&#10;&#10;added aility to enter enable password if needed --&gt; needs to be checked.">
+      <change afterPath="$PROJECT_DIR$/EP/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/CiscoCLI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CiscoCLI.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EP/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/EP/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EP/connect.py" beforeDir="false" afterPath="$PROJECT_DIR$/EP/connect.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EP/init.py" beforeDir="false" afterPath="$PROJECT_DIR$/EP/init.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EP/mydevices.py" beforeDir="false" afterPath="$PROJECT_DIR$/EP/mydevices.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EP/keygen.py" beforeDir="false" afterPath="$PROJECT_DIR$/EP/keygen.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EP/notes" beforeDir="false" afterPath="$PROJECT_DIR$/EP/notes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EP/scenario.py" beforeDir="false" afterPath="$PROJECT_DIR$/EP/scenario.py" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,40 +21,42 @@
     <session id="-674680442">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.0" value="1" />
-          <entry key="project.open.time.4" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.closed" value="5" />
+          <entry key="project.open.time.0" value="5" />
+          <entry key="project.open.time.4" value="2" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="IPSec" value="1" />
+          <entry key="IPSec" value="2" />
           <entry key="defaults" value="1" />
           <entry key="hostname" value="1" />
-          <entry key="notes" value="2" />
-          <entry key="py" value="7" />
+          <entry key="notes" value="3" />
+          <entry key="py" value="21" />
           <entry key="routing" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="PLAIN_TEXT" value="6" />
-          <entry key="Python" value="7" />
+          <entry key="PLAIN_TEXT" value="8" />
+          <entry key="Python" value="21" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="601" />
-          <entry key="notes" value="237" />
-          <entry key="py" value="2834" />
-          <entry key="txt" value="67" />
+          <entry key="Python Console" value="661" />
+          <entry key="notes" value="397" />
+          <entry key="py" value="4390" />
+          <entry key="txt" value="664" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="304" />
-          <entry key="Python" value="3435" />
+          <entry key="PLAIN_TEXT" value="1061" />
+          <entry key="Python" value="5051" />
         </counts>
       </usages-collector>
     </session>
@@ -63,46 +64,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/EP/notes">
+        <entry file="file://$PROJECT_DIR$/EP/scenario.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="508">
-              <caret line="43" column="14" selection-start-line="43" selection-start-column="14" selection-end-line="43" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/EP/init.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1494">
-              <caret line="88" column="13" lean-forward="true" selection-start-line="88" selection-start-column="13" selection-end-line="88" selection-end-column="13" />
-              <folding>
-                <element signature="e#19#29#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/EP/templates/defaults">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/EP/templates/IPSec">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/EP/templates/routing">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/EP/connect.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="45" column="30" selection-start-line="45" selection-start-column="30" selection-end-line="45" selection-end-column="30" />
+            <state relative-caret-position="1785">
+              <caret line="144" column="62" selection-start-line="144" selection-start-column="56" selection-end-line="144" selection-end-column="62" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -111,42 +76,82 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/EP/show_commands.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/EP/config.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+            <state relative-caret-position="561">
+              <caret line="36" column="23" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/EP/mydevices.py">
+        <entry file="file://$PROJECT_DIR$/EP/keygen.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="5" lean-forward="true" selection-end-line="24" />
+            <state relative-caret-position="221">
+              <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/EP/dev.py">
+        <entry file="file://$PROJECT_DIR$/EP/notes">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="33" column="20" selection-start-line="33" selection-start-column="14" selection-end-line="33" selection-end-column="20" />
+            <state relative-caret-position="310">
+              <caret line="34" column="14" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/EP/connect.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1360">
+              <caret line="85" column="21" lean-forward="true" selection-start-line="85" selection-start-column="21" selection-end-line="85" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/EP/init.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-column="17" />
               <folding>
-                <marker date="1541168034290" expanded="true" signature="844:845" ph="..." />
+                <element signature="e#19#29#0" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/EP/zing.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="212">
+              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+              <folding>
+                <element signature="e#19#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/EP/templates/IPSec">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/EP/Cisco_ssh_ssh.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="17" selection-start-line="17" selection-end-line="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/EP/__init__.py">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -161,9 +166,11 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>append</find>
+      <find>wra</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -172,24 +179,29 @@
         <option value="$PROJECT_DIR$/EP/dev.py" />
         <option value="$PROJECT_DIR$/EP/config.py" />
         <option value="$PROJECT_DIR$/EP/mydevices.py" />
-        <option value="$PROJECT_DIR$/EP/notes" />
-        <option value="$PROJECT_DIR$/EP/init.py" />
         <option value="$PROJECT_DIR$/EP/show_commands.py" />
         <option value="$PROJECT_DIR$/EP/connect.py" />
+        <option value="$PROJECT_DIR$/EP/scenario.py" />
+        <option value="$PROJECT_DIR$/EP/keygen.py" />
+        <option value="$PROJECT_DIR$/EP/notes" />
+        <option value="$PROJECT_DIR$/EP/init.py" />
+        <option value="$PROJECT_DIR$/zing.py" />
+        <option value="$PROJECT_DIR$/EP/zing.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="184" />
-    <option name="y" value="45" />
-    <option name="width" value="1400" />
-    <option name="height" value="886" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="416" />
+    <option name="y" value="67" />
+    <option name="width" value="1175" />
+    <option name="height" value="913" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -208,15 +220,19 @@
               <item name="EP" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="CiscoCLI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="PyConsoleConfigurable.Python Console" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../HTS" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -226,121 +242,10 @@
       </console-settings>
     </option>
   </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/EP/config.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/EP/connect.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/EP/dev.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/EP/init.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/EP/templates/defaults</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/EP/templates/routing</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/EP/templates/IPSec</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Users\Green\PycharmProjects\CiscoCLI\EP" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -406,7 +311,21 @@
       <option name="project" value="LOCAL" />
       <updated>1540841292671</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="notes edited&#10;show command python file added &#10;connect to device function is done.&#10;&#10;needs to add &quot;send command function&quot;&#10;  send command&#10;  timer sleep 0.3 /0.2&#10;  recevie buffer and split it">
+      <created>1541178107992</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1541178107992</updated>
+    </task>
+    <task id="LOCAL-00004" summary="notes edited with BUG and a request for removing the timer feature.&#10;&#10;we should use the prompt to prompt method&#10;although it was working good!&#10;&#10;the connect function is almost done, &#10;added the sendc sub function to send the command + &lt;CR&gt; , sleep, and append the output for each command.&#10;&#10;added aility to enter enable password if needed --&gt; needs to be checked.">
+      <created>1541377138431</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1541377138431</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView">
@@ -419,22 +338,24 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="416" y="67" width="1175" height="913" extended-state="1" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29903254" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49578503" visible="true" weight="0.329718" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4992658" weight="0.32978722" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49265787" weight="0.32845744" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.329718" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.329718" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49947312" weight="0.329718" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50421494" side_tool="true" visible="true" weight="0.329718" />
-      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.7286618" weight="0.329718" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49706313" weight="0.32845744" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49692172" visible="true" weight="0.31707317" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5030783" side_tool="true" visible="true" weight="0.31707317" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.7265543" weight="0.329718" />
+      <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -446,7 +367,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="menu created for adding device&#10;list devices&#10;edit device" />
     <MESSAGE value="notes edited" />
-    <option name="LAST_COMMIT_MESSAGE" value="notes edited" />
+    <MESSAGE value="notes edited&#10;show command python file added &#10;connect to device function is done.&#10;&#10;needs to add &quot;send command function&quot;&#10;  send command&#10;  timer sleep 0.3 /0.2&#10;  recevie buffer and split it" />
+    <MESSAGE value="notes edited with BUG and a request for removing the timer feature.&#10;&#10;we should use the prompt to prompt method&#10;although it was working good!&#10;&#10;the connect function is almost done, &#10;added the sendc sub function to send the command + &lt;CR&gt; , sleep, and append the output for each command.&#10;&#10;added aility to enter enable password if needed --&gt; needs to be checked." />
+    <option name="LAST_COMMIT_MESSAGE" value="notes edited with BUG and a request for removing the timer feature.&#10;&#10;we should use the prompt to prompt method&#10;although it was working good!&#10;&#10;the connect function is almost done, &#10;added the sendc sub function to send the command + &lt;CR&gt; , sleep, and append the output for each command.&#10;&#10;added aility to enter enable password if needed --&gt; needs to be checked." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/EP/configs/hostname" />
@@ -460,66 +383,109 @@
     <entry file="file://$PROJECT_DIR$/EP/templates/defaults">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/EP/templates/IPSec">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/get-pip.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-306" />
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_bundle/pydev_import_hook.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/EP/templates/routing">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/EP/dev.py">
+    <entry file="file://$PROJECT_DIR$/EP/show_commands.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="33" column="20" selection-start-line="33" selection-start-column="14" selection-end-line="33" selection-end-column="20" />
-          <folding>
-            <marker date="1541168034290" expanded="true" signature="844:845" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EP/notes">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="43" column="14" selection-start-line="43" selection-start-column="14" selection-end-line="43" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EP/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EP/init.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1494">
-          <caret line="88" column="13" lean-forward="true" selection-start-line="88" selection-start-column="13" selection-end-line="88" selection-end-column="13" />
-          <folding>
-            <element signature="e#19#29#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="561">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/EP/mydevices.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="2" column="5" lean-forward="true" selection-end-line="24" />
+          <caret line="2" column="5" selection-end-line="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/EP/show_commands.py">
+    <entry file="file://$PROJECT_DIR$/EP/dev.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="561">
+          <caret line="33" column="20" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EP/keygen.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EP/notes">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="34" column="14" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/EP/connect.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="45" column="30" selection-start-line="45" selection-start-column="30" selection-end-line="45" selection-end-column="30" />
+        <state relative-caret-position="1360">
+          <caret line="85" column="21" lean-forward="true" selection-start-line="85" selection-start-column="21" selection-end-line="85" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EP/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EP/init.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="17" />
+          <folding>
+            <element signature="e#19#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EP/Cisco_ssh_ssh.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="17" selection-start-line="17" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EP/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="36" column="23" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EP/scenario.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1785">
+          <caret line="144" column="62" selection-start-line="144" selection-start-column="56" selection-end-line="144" selection-end-column="62" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EP/templates/IPSec">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EP/zing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+          <folding>
+            <element signature="e#19#28#0" expanded="true" />
           </folding>
         </state>
       </provider>

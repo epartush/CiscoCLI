@@ -24,6 +24,7 @@ def cls():
     os.system('cls' if os.name=='nt' else 'clear')
 
 
+
 '''Menu '''
 while True:
     cls()
@@ -55,6 +56,7 @@ while True:
                 raw_input("\nPress any key..")
 
     elif input =='2':
+        print "UNDER CONSTRUCTION --> WILL BE MOVED TO BE A FUNCTION"
         onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 
         for files in onlyfiles:

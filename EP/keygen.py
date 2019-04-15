@@ -1,17 +1,17 @@
 import curses
-from curses import wrapper
-#stdscr = curses.initscr()
+# from curses import wrapper
+# stdscr = curses.initscr()
 
-#curses.noecho()
+# curses.noecho()
 
 
-#begin_x = 20; begin_y = 7
-#height = 5; width = 40
-#win = curses.newwin(height, width, begin_y, begin_x)
+# begin_x = 20; begin_y = 7
+# height = 5; width = 40
+# win = curses.newwin(height, width, begin_y, begin_x)
 
 def check(stdscr):
     stdscr = curses.initscr()
-    #curses.init_color()
+    # curses.init_color()
     c=['']
     phrase=['']
     #curses.newwin(2,50,2,0)
